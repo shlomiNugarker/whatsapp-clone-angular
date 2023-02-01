@@ -1,0 +1,143 @@
+.chat-list {
+  height: 100%;
+  max-width: 30%;
+  color: #202124;
+
+  //** Header:
+  .header {
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+
+    .user-img {
+      img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    .nav {
+      display: flex;
+      span {
+        padding: 8px;
+        height: 24px;
+        width: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      .community {
+      }
+    }
+  }
+
+  //** Search:
+  .search-container {
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    width: 100%;
+
+    .search {
+      // color: #dadcdc;
+      width: 100%;
+      padding: 0 12px;
+      display: flex;
+      background-color: #f0f2f5;
+      border-radius: 8px;
+
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      height: 35px;
+      border-radius: 8px;
+      padding-right: 32px;
+      height: 35px;
+
+      .search-icon {
+        position: relative;
+        left: 0;
+      }
+
+      input {
+        // color: black;
+        border: none;
+        background-color: unset;
+        font-size: 15px;
+        white-space: nowrap;
+        padding: 0;
+        position: relative;
+        width: 100%;
+        min-height: 20px;
+        line-height: 20px;
+        word-wrap: break-word;
+
+        &:focus {
+          background-color: unset;
+          outline: none;
+          color: #3b4a54;
+        }
+      }
+    }
+    .icon {
+      width: 25px;
+      margin: 0 8px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  //** List:
+  .list {
+    // height: 870px;
+    // height: 100%;
+    height: calc(100vh - 183px);
+    overflow-y: auto;
+    .chat-preview {
+      &.selected {
+        background-color: #f0f2f5;
+      }
+
+      height: 70px;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+        padding: 0 15px 0 13px;
+      }
+
+      .details-preview {
+        width: 100%;
+        padding-right: 13px;
+        .name-and-date {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          justify-content: space-between;
+
+          .full-name {
+          }
+        }
+        p {
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .chat-list {
+    max-width: 45%;
+  }
+}

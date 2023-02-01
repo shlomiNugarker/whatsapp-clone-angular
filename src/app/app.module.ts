@@ -8,6 +8,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component';
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { ChatListComponent } from './cmps/chat-list/chat-list.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     SignInPageComponent,
     SignUpPageComponent,
     AboutPageComponent,
+    ChatListComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
