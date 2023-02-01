@@ -8,7 +8,7 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 const routes: Routes = [
   {
-    path: 'main-page/:id',
+    path: 'main-page',
     component: MainPageComponent,
   },
   {

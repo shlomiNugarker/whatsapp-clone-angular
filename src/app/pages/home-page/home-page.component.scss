@@ -29,6 +29,21 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        text-transform: uppercase;
+        font-size: 14px;
+
+        h2 {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        p {
+          margin: 0 0 0 14px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
       }
     }
 
@@ -80,6 +95,10 @@
 
               ol {
                 color: #41525d;
+
+                li {
+                  margin-top: 18px;
+                }
               }
             }
 
@@ -178,6 +197,58 @@
           }
 
           .v {
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .home-page {
+    .bg-before {
+    }
+    .wrapper {
+      .header {
+        span {
+        }
+      }
+
+      .window {
+        width: 100%;
+
+        .main {
+          .details {
+            .container {
+              flex-direction: column;
+              .txt {
+                .title {
+                }
+              }
+
+              .barcode {
+                margin: 0 auto;
+                margin-top: 32px;
+                margin-bottom: 28px;
+                .qrcode {
+                }
+              }
+            }
+          }
+        }
+        .tutorial {
+          padding: 40px 0px;
+          .title {
+          }
+
+          .link {
+            a {
+            }
+          }
+
+          .v {
+            width: 100%;
+            margin: 0 auto;
           }
         }
       }
