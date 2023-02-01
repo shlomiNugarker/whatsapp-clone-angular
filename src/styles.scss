@@ -1,1 +1,56 @@
-/* You can add global styles to this file, and also import other style files */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  width: 100%;
+}
+
+a {
+  text-transform: none;
+  text-decoration: none;
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  font-weight: normal;
+}
+
+p {
+  margin: 0 0 0.75rem;
+  max-width: 60ch;
+}
+
+.clean-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+::-webkit-input-placeholder {
+  color: #8bbabb;
+  font-size: 16px;
+  text-transform: capitalize;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  background-color: #8bbabb;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  background-color: #464159;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #6c7b95;
+}
