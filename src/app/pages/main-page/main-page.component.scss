@@ -24,15 +24,17 @@
   }
 
   .wrapper {
-    margin: 0 auto;
+    // margin: 0 auto;
     margin-top: 6px;
     margin-bottom: 6px;
-    box-shadow: 0 6px 18px rgba(11, 20, 26, 0.05);
+    // box-shadow: 0 6px 18px rgba(11, 20, 26, 0.05);
 
     background-color: #f7f8fa;
-    background-repeat: repeat-x;
-    border-radius: 0;
-    transform-origin: center;
+    // background-repeat: repeat-x;
+    // border-radius: 0;
+    // transform-origin: center;
+
+    display: flex;
 
     top: 19px;
     width: calc(100% - 38px);

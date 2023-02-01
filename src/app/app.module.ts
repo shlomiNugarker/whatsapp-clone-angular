@@ -9,6 +9,7 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 import { ChatListComponent } from './cmps/chat-list/chat-list.component';
+import { MessageComponent } from './cmps/message/message.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { ChatListComponent } from './cmps/chat-list/chat-list.component';
     SignUpPageComponent,
     AboutPageComponent,
     ChatListComponent,
+    MessageComponent,
   ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],

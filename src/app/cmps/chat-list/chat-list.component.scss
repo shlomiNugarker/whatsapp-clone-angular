@@ -1,7 +1,12 @@
+:host {
+  width: 30%;
+}
+
 .chat-list {
   height: 100%;
-  max-width: 30%;
   color: #202124;
+  display: inline-block;
+  width: 100%;
 
   //** Header:
   .header {
@@ -43,7 +48,7 @@
 
     .search {
       // color: #dadcdc;
-      width: 100%;
+      width: 90%;
       padding: 0 12px;
       display: flex;
       background-color: #f0f2f5;
@@ -93,9 +98,7 @@
 
   //** List:
   .list {
-    // height: 870px;
-    // height: 100%;
-    height: calc(100vh - 183px);
+    height: calc(100vh - 168px);
     overflow-y: auto;
     .chat-preview {
       &.selected {
@@ -137,7 +140,7 @@
 }
 
 @media screen and (max-width: 1050px) {
-  .chat-list {
-    max-width: 45%;
+  :host {
+    width: 30%;
   }
 }
