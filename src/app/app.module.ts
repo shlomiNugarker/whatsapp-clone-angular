@@ -10,7 +10,14 @@ import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 
 @NgModule({
-  declarations: [AppComponent, HomePageComponent, MainPageComponent, SignInPageComponent, SignUpPageComponent, AboutPageComponent],
+  declarations: [
+    AppComponent,
+    HomePageComponent,
+    MainPageComponent,
+    SignInPageComponent,
+    SignUpPageComponent,
+    AboutPageComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
