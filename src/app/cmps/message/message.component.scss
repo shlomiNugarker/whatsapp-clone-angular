@@ -34,6 +34,7 @@
         h2 {
         }
         p {
+          color: #667781;
         }
       }
     }
@@ -41,6 +42,7 @@
     .btns {
       display: flex;
       align-items: center;
+      color: #54656f;
       .search-icon,
       .menu {
         height: 25px;
@@ -55,13 +57,8 @@
 
   // Messages List:
   .list {
-    height: calc(100vh - 145px);
-    // height: calc(100vh - 112px);
+    height: calc(100vh - 163px);
     overflow-y: auto;
-
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: flex-end;
 
     .message-preview {
       padding-right: 63px;
@@ -98,7 +95,7 @@
 
       .msg {
         padding: 6px 7px 8px 9px;
-        width: min-content;
+        width: max-content;
         margin: 5px 0;
         position: relative;
         .x {
@@ -117,25 +114,30 @@
         .time {
           display: flex;
           justify-content: flex-end;
+
+          small {
+            color: #667781;
+          }
         }
       }
     }
   }
 
+  // Input-Message:
   .input-message {
     background-color: #f0f2f5;
     .container {
       display: flex;
       padding-right: 17px;
       padding-left: 10px;
-      border-left: 1px solid;
+      border-left: 1px solid #e9edef;
 
       .icons {
-        // padding: 5px 10px 5px 0;
         padding: 5px 10px;
         display: flex;
         justify-content: center;
         align-items: center;
+        color: #54656f;
         span {
           width: 25pxs;
           display: flex;
@@ -151,8 +153,10 @@
         }
 
         .emojis {
+          cursor: pointer;
         }
         .attach {
+          cursor: pointer;
         }
       }
 
@@ -164,9 +168,15 @@
         background-color: white;
         border: 1px solid white;
         border-bottom: 8px;
+
+        &:focus {
+          outline: unset;
+        }
       }
 
       .voice-message {
+        cursor: pointer;
+        color: #54656f;
         width: 25px;
         display: flex;
         justify-content: center;

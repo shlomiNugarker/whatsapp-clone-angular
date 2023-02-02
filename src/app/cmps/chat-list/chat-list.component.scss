@@ -16,6 +16,7 @@
     padding: 16px;
 
     .user-img {
+      cursor: pointer;
       img {
         border-radius: 50%;
         width: 40px;
@@ -23,9 +24,11 @@
       }
     }
 
+    // Nav:
     .nav {
       display: flex;
       span {
+        color: #54656f;
         padding: 8px;
         height: 24px;
         width: 24px;
@@ -65,10 +68,10 @@
       .search-icon {
         position: relative;
         left: 0;
+        color: #667781;
       }
 
       input {
-        // color: black;
         border: none;
         background-color: unset;
         font-size: 15px;
@@ -87,12 +90,14 @@
         }
       }
     }
+
     .icon {
       width: 25px;
       margin: 0 8px;
       display: flex;
       justify-content: center;
       align-items: center;
+      color: #667781;
     }
   }
 
@@ -100,8 +105,14 @@
   .list {
     height: calc(100vh - 168px);
     overflow-y: auto;
+
+    //
     .chat-preview {
       &.selected {
+        background-color: #f0f2f5;
+      }
+
+      &:hover {
         background-color: #f0f2f5;
       }
 
@@ -110,11 +121,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      cursor: pointer;
 
       img {
         border-radius: 50%;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         object-fit: cover;
         padding: 0 15px 0 13px;
       }
@@ -130,9 +142,14 @@
           justify-content: space-between;
 
           .full-name {
+            color: #111b21;
+          }
+          small {
+            color: #667781;
           }
         }
         p {
+          color: #667781;
         }
       }
     }
