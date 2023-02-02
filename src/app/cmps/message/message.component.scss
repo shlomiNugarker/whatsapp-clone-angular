@@ -55,7 +55,8 @@
 
   // Messages List:
   .list {
-    height: calc(100vh - 112px);
+    height: calc(100vh - 145px);
+    // height: calc(100vh - 112px);
     overflow-y: auto;
 
     // display: flex;
@@ -117,6 +118,59 @@
           display: flex;
           justify-content: flex-end;
         }
+      }
+    }
+  }
+
+  .input-message {
+    background-color: #f0f2f5;
+    .container {
+      display: flex;
+      padding-right: 17px;
+      padding-left: 10px;
+      border-left: 1px solid;
+
+      .icons {
+        // padding: 5px 10px 5px 0;
+        padding: 5px 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        span {
+          width: 25pxs;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:first-child {
+            margin-right: 8px;
+          }
+          &:nth-child(2) {
+            margin-left: 8px;
+          }
+        }
+
+        .emojis {
+        }
+        .attach {
+        }
+      }
+
+      .input {
+        width: 100%;
+        padding: 9px 12px 11px;
+        margin: 5px 10px;
+        border-radius: 8px;
+        background-color: white;
+        border: 1px solid white;
+        border-bottom: 8px;
+      }
+
+      .voice-message {
+        width: 25px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
       }
     }
   }
