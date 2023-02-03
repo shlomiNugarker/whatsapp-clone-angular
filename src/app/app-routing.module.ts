@@ -6,10 +6,13 @@ import { SignInPageComponent } from './pages/sign-in-page/sign-in-page.component
 import { SignUpPageComponent } from './pages/sign-up-page/sign-up-page.component';
 import { AboutPageComponent } from './pages/about-page/about-page.component';
 
+import { AuthGuard } from './guards/auth.guard';
+
 const routes: Routes = [
   {
     path: 'main-page',
     component: MainPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: 'sign-in-page',
@@ -22,11 +25,13 @@ const routes: Routes = [
   {
     path: 'about-page',
     component: AboutPageComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '',
     component: HomePageComponent,
     pathMatch: 'full',
+    canActivate: [AuthGuard],
   },
 ];
 
