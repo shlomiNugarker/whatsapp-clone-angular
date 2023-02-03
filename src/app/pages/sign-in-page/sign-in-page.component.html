@@ -1,11 +1,20 @@
 <section class="sign-in-page">
   <div class="bg-before"></div>
   <div class="window">
-    <form class="sign-in-form">
+    <form class="sign-in-form" [formGroup]="form">
       <h1>Sign-in</h1>
-      <input type="text" placeholder="Enter your email" />
-      <input type="text" placeholder="Enter your password" />
-      <button type="submit">Submit</button>
+      <input
+        name="email"
+        formControlName="email"
+        placeholder="Enter your email"
+      />
+      <input
+        name="password"
+        formControlName="password"
+        type="password"
+        placeholder="Enter your password"
+      />
+      <button (click)="login()">Submit</button>
     </form>
   </div>
 </section>
