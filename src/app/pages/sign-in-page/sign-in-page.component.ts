@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 })
 export class SignInPageComponent {
   form: FormGroup;
-
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
@@ -21,10 +20,8 @@ export class SignInPageComponent {
       password: ['', Validators.required],
     });
   }
-
   login() {
     const val = this.form.value;
-
     if (val.email && val.password) {
       this.authService.login(val.email, val.password).subscribe(() => {
         console.log('User is logged in');
