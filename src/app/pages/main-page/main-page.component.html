@@ -1,11 +1,11 @@
 <section class="main-page">
   <div class="bg"></div>
   <div class="bg-before">
- 
   </div>
 
   <div class="wrapper">
-    <app-chat-list />
-    <app-message />
+    <app-chat-list [chats]="chats" [selectedChatId]="selectedChat?.id"  (selectChat)="onSelectChat($event)"/>
+    <app-message *ngIf="selectedChat" [messages]="selectedChat?.messages" />
+    <app-no-selected-chat *ngIf="!selectedChat"></app-no-selected-chat>
   </div>
 </section>

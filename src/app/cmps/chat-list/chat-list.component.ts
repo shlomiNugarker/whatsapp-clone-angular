@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Chat } from 'src/app/models/chat';
 
 @Component({
   selector: 'app-chat-list',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./chat-list.component.scss'],
 })
 export class ChatListComponent {
-  chats: number[] = [1, 3, 4, 5, 6, 7, 8, 9.1, 11, 13, 14, 15, 16, 17, 18];
+  @Input() chats: Chat[] | null | undefined;
+  @Input() selectedChatId: string | undefined;
+  @Output('selectChat') onSelect = new EventEmitter<string>();
+
+  selectChat(chatId: string) {
+    this.onSelect.emit(chatId);
+  }
+  constructor() {}
 }

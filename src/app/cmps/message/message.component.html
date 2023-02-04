@@ -59,11 +59,7 @@
     <div
       *ngFor="let message of messages"
       class="message-preview"
-      [ngClass]="
-        message % 2 === 0
-          ? 'message-preview my-msg'
-          : 'message-preview friend-msg'
-      "
+      ngClass="message-preview my-msg friend-msg "
     >
       <div class="msg">
         <span class="x">
@@ -93,7 +89,7 @@
         </span>
 
         <!-- The message -->
-        <p>OK thankssss srgsd sdg seg afssssssss</p>
+        <p>{{ message.text }}</p>
         <div class="time">
           <small>10:31</small>
         </div>

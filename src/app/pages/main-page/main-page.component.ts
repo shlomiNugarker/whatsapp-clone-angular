@@ -9,7 +9,8 @@ import { ChatService } from 'src/app/services/chat-service/chat.service';
   styleUrls: ['./main-page.component.scss'],
 })
 export class MainPageComponent implements OnInit {
-  chats: Chat[] | null = null;
+  chats: Chat[] = [];
+  selectedChat: Chat | null = null;
 
   constructor(private chatService: ChatService) {}
 
@@ -18,9 +19,14 @@ export class MainPageComponent implements OnInit {
   }
 
   loadChats() {
-    this.chatService
-      .getChats()
-      .subscribe((chats: Chat[]) => (this.chats = chats));
-    console.log(this.chats);
+    this.chatService.getChats().subscribe((chats: Chat[]) => {
+      this.chats = chats;
+      // this.selectedChat = this.chats[0];
+    });
+  }
+
+  onSelectChat(chatId: string) {
+    const chatToShow = this.chats.find((chat) => chat.id === chatId);
+    this.selectedChat = chatToShow || null;
   }
 }

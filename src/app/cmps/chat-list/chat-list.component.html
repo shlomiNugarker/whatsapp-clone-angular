@@ -141,7 +141,12 @@
   <!-- List: -->
   <div class="list">
     <!-- Chat Preview: -->
-    <div *ngFor="let chat of chats" class="chat-preview">
+    <div
+      *ngFor="let chat of chats"
+      class="chat-preview"
+      [ngClass]="selectedChatId === chat.id ? 'selected' : ''"
+      (click)="selectChat(chat.id)"
+    >
       <img
         src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
         alt=""
@@ -151,7 +156,7 @@
           <h3 class="full-name">Docteor code</h3>
           <small>11.02</small>
         </div>
-        <p>last message</p>
+        <p>{{ chat.messages[chat.messages.length - 1].text }}</p>
       </div>
     </div>
   </div>
