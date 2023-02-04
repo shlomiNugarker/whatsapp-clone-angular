@@ -4,8 +4,9 @@
   </div>
 
   <div class="wrapper">
-    <app-chat-list [chats]="chats" [selectedChatId]="selectedChat?.id"  (selectChat)="onSelectChat($event)"/>
+    <app-profile *ngIf="modalNameToShow === 'profile'" (selectModal)="onShowModal($event)"/>
+    <app-chat-list *ngIf="modalNameToShow === ''" [chats]="chats" [selectedChatId]="selectedChat?.id" (selectModal)="onShowModal($event)"  (selectChat)="onSelectChat($event)"/>
     <app-message *ngIf="selectedChat" [messages]="selectedChat?.messages" />
-    <app-no-selected-chat *ngIf="!selectedChat"></app-no-selected-chat>
+    <app-no-selected-chat *ngIf="!selectedChat" />
   </div>
 </section>

@@ -45,7 +45,7 @@
 
   //** Search:
   .search-container {
-    padding: 10px 10px 10px 10px;
+    padding: 10px 0;
     display: flex;
     width: 100%;
 
@@ -92,7 +92,7 @@
     }
 
     .icon {
-      width: 25px;
+      // width: 25px;
       margin: 0 8px;
       display: flex;
       justify-content: center;

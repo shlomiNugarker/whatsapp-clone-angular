@@ -15,6 +15,7 @@ import { MessageComponent } from './cmps/message/message.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NoSelectedChatComponent } from './cmps/no-selected-chat/no-selected-chat.component';
+import { ProfileComponent } from './cmps/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { NoSelectedChatComponent } from './cmps/no-selected-chat/no-selected-cha
     ChatListComponent,
     MessageComponent,
     NoSelectedChatComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

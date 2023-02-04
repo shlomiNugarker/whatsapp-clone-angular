@@ -9,10 +9,15 @@ import { Chat } from 'src/app/models/chat';
 export class ChatListComponent {
   @Input() chats: Chat[] | null | undefined;
   @Input() selectedChatId: string | undefined;
+  @Output('selectModal') onSelectModal = new EventEmitter<'profile' | ''>();
   @Output('selectChat') onSelect = new EventEmitter<string>();
 
   selectChat(chatId: string) {
     this.onSelect.emit(chatId);
+  }
+
+  showProfile() {
+    this.onSelectModal.emit('profile');
   }
   constructor() {}
 }
