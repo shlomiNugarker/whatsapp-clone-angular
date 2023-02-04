@@ -28,20 +28,7 @@ export class ChatService {
           reactions: [],
           createdAt: 4343535,
         },
-        {
-          id: 1,
-          text: 'dg tgggg deg sdhere :)',
-          createdBy: '14',
-          reactions: [],
-          createdAt: 43432535,
-        },
-        {
-          id: 1,
-          text: 'hey sg  adeffaf af afra  :)',
-          createdBy: '13',
-          reactions: [],
-          createdAt: 43453535,
-        },
+
         {
           id: 1,
           text: ' aer aef a ffrgg there :)',

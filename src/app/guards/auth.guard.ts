@@ -5,7 +5,6 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
-import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -21,6 +20,7 @@ export class AuthGuard implements CanActivate {
     if (isLoggedIn) return isLoggedIn;
 
     this.router.navigate(['/sign-in-page']);
-    return !isLoggedIn;
+    return false;
+    // return isLoggedIn;
   }
 }
