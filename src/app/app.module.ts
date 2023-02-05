@@ -18,6 +18,7 @@ import { NoSelectedChatComponent } from './cmps/no-selected-chat/no-selected-cha
 import { ProfileComponent } from './cmps/profile/profile.component';
 import { NewChatComponent } from './cmps/new-chat/new-chat.component';
 import { ContactListComponent } from './cmps/contact-list/contact-list.component';
+import { SearchMessageComponent } from './cmps/search-message/search-message.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { ContactListComponent } from './cmps/contact-list/contact-list.component
     ProfileComponent,
     NewChatComponent,
     ContactListComponent,
+    SearchMessageComponent,
   ],
   imports: [
     BrowserModule,
