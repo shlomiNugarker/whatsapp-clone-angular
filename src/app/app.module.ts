@@ -21,6 +21,7 @@ import { ContactListComponent } from './cmps/contact-list/contact-list.component
 import { SearchMessageComponent } from './cmps/search-message/search-message.component';
 import { ContactInfoComponent } from './cmps/contact-info/contact-info.component';
 import { CommunitiesComponent } from './cmps/communities/communities.component';
+import { StatusComponent } from './cmps/status/status.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { CommunitiesComponent } from './cmps/communities/communities.component';
     SearchMessageComponent,
     ContactInfoComponent,
     CommunitiesComponent,
+    StatusComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,7 +11,7 @@ export class MainPageComponent implements OnInit {
   chats: Chat[] = [];
   selectedChat: Chat | null = null;
 
-  // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities'
+  // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status
   modalNameToShow: string = '';
 
   constructor(private chatService: ChatService) {}
