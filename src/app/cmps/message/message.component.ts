@@ -8,4 +8,10 @@ import { Message } from 'src/app/models/message';
 })
 export class MessageComponent {
   @Input() messages: Message[] | null | undefined;
+
+  @Output('selectModal') onSelectModal = new EventEmitter<string>();
+
+  showSearchMessage() {
+    this.onSelectModal.emit('search-message');
+  }
 }
