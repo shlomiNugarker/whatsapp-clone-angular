@@ -5,17 +5,39 @@
 
   <div class="wrapper">
     <!-- modals: -->
-    <app-new-chat *ngIf="modalNameToShow === 'new-chat'" (selectModal)="onShowModal($event)" />
-    <app-profile *ngIf="modalNameToShow === 'profile'" (selectModal)="onShowModal($event)"/>
+    <app-new-chat 
+      *ngIf="modalNameToShow === 'new-chat'" 
+       (selectModal)="onShowModal($event)" 
+    />
 
-    <!-- *ngIf="modalNameToShow === ''"  -->
+    <app-profile
+      *ngIf="modalNameToShow === 'profile'"
+      (selectModal)="onShowModal($event)"
+      />
+
+    <app-search-message 
+      *ngIf="modalNameToShow === 'search-message'" 
+      (selectModal)="onShowModal($event)"
+    
+
+     />
+
     <app-chat-list
      [chats]="chats" [selectedChatId]="selectedChat?.id" 
      (selectModal)="onShowModal($event)" 
      (selectChat)="onSelectChat($event)"
      />
 
-    <app-message *ngIf="selectedChat" [messages]="selectedChat?.messages" />
-    <app-no-selected-chat *ngIf="!selectedChat" />
+    <app-message 
+     *ngIf="selectedChat" 
+     (selectModal)="onShowModal($event)"  
+     [messages]="selectedChat?.messages" 
+     [ngClass]="modalNameToShow === 'search-message'? 'w-40': ''"
+
+    />
+
+    <app-no-selected-chat *ngIf="!selectedChat"  
+      [ngClass]="modalNameToShow === 'search-message'? 'w-40': ''"
+      />
   </div>
 </section>

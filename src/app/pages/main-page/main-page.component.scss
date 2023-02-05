@@ -2,7 +2,6 @@
   height: 100vh;
   height: 100vh;
   display: flex;
-  // align-items: center;
   justify-content: center;
 
   .bg {
@@ -28,6 +27,7 @@
     margin-top: 6px;
     margin-bottom: 6px;
     background-color: #f7f8fa;
+
     display: flex;
     top: 19px;
     width: calc(100% - 38px);
