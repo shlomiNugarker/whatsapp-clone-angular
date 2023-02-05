@@ -17,12 +17,12 @@
     align-items: center;
     justify-content: space-between;
     border-left: 1px solid #d1d7db;
-
     border-right: 1px solid #d1d7db;
 
     .container {
       display: flex;
       align-items: center;
+      cursor: pointer;
 
       img {
         width: 40px;
