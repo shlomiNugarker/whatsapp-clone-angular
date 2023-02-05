@@ -11,7 +11,7 @@ import { ChatService } from 'src/app/services/chat-service/chat.service';
 export class MainPageComponent implements OnInit {
   chats: Chat[] = [];
   selectedChat: Chat | null = null;
-  modalNameToShow: string = '';
+  modalNameToShow: string = 'new-chat';
 
   constructor(private chatService: ChatService) {}
 
@@ -22,7 +22,7 @@ export class MainPageComponent implements OnInit {
   loadChats() {
     this.chatService.getChats().subscribe((chats: Chat[]) => {
       this.chats = chats;
-      this.selectedChat = this.chats[0];
+      // this.selectedChat = this.chats[0];
     });
   }
 

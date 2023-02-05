@@ -4,8 +4,17 @@
   </div>
 
   <div class="wrapper">
+    <!-- modals: -->
+    <app-new-chat *ngIf="modalNameToShow === 'new-chat'" (selectModal)="onShowModal($event)" />
     <app-profile *ngIf="modalNameToShow === 'profile'" (selectModal)="onShowModal($event)"/>
-    <app-chat-list *ngIf="modalNameToShow === ''" [chats]="chats" [selectedChatId]="selectedChat?.id" (selectModal)="onShowModal($event)"  (selectChat)="onSelectChat($event)"/>
+
+    <!-- *ngIf="modalNameToShow === ''"  -->
+    <app-chat-list
+     [chats]="chats" [selectedChatId]="selectedChat?.id" 
+     (selectModal)="onShowModal($event)" 
+     (selectChat)="onSelectChat($event)"
+     />
+
     <app-message *ngIf="selectedChat" [messages]="selectedChat?.messages" />
     <app-no-selected-chat *ngIf="!selectedChat" />
   </div>

@@ -9,6 +9,7 @@
     </div>
     <!-- Nav: -->
     <div class="nav">
+      <!-- Community logo: -->
       <span class="community"
         ><svg
           viewBox="0 0 28 28"
@@ -26,6 +27,8 @@
           ></path>
         </svg>
       </span>
+
+      <!-- Status logo: -->
       <span class="status">
         <svg
           viewBox="0 0 24 24"
@@ -50,7 +53,9 @@
           ></path>
         </svg>
       </span>
-      <span class="new-chat"
+
+      <!-- New chat logo: -->
+      <span class="new-chat" (click)="showNewChat()"
         ><svg
           viewBox="0 0 24 24"
           height="24"
@@ -71,6 +76,7 @@
         </svg>
       </span>
 
+      <!-- Menu logo: -->
       <span class="menu">
         <svg
           viewBox="0 0 24 24"
@@ -96,6 +102,7 @@
   <!-- Search: -->
   <div class="search-container">
     <div class="search">
+      <!-- Search icon: -->
       <span class="search-icon icon">
         <svg
           viewBox="0 0 24 24"
@@ -115,8 +122,10 @@
           ></path>
         </svg>
       </span>
+      <!-- Input: -->
       <input type="text" placeholder="Search or start new chat" />
     </div>
+    <!-- Unread-chat-filter icon: -->
     <span class="icon unread-chat-filter">
       <svg
         viewBox="0 0 24 24"
