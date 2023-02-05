@@ -1,12 +1,10 @@
 import { Reaction } from './reaction';
-import { Reply } from './reply';
 
-export interface Message {
+export interface Reply {
   id: string;
   userId: string;
   text: string;
   createdBy: string;
   reactions: Reaction[];
   createdAt: number;
-  replies: Reply[];
 }
