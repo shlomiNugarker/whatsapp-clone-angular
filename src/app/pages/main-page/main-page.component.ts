@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
 import { ChatService } from 'src/app/services/chat-service/chat.service';
 
@@ -11,7 +10,7 @@ import { ChatService } from 'src/app/services/chat-service/chat.service';
 export class MainPageComponent implements OnInit {
   chats: Chat[] = [];
   selectedChat: Chat | null = null;
-  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message'
+  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info'
 
   constructor(private chatService: ChatService) {}
 

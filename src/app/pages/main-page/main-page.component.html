@@ -18,26 +18,31 @@
     <app-search-message 
       *ngIf="modalNameToShow === 'search-message'" 
       (selectModal)="onShowModal($event)"
-    
-
      />
 
+     <app-contact-info *ngIf="modalNameToShow === 'contact-info'"
+        (selectModal)="onShowModal($event)"  />
+
+     <!-- Chats: -->
     <app-chat-list
      [chats]="chats" [selectedChatId]="selectedChat?.id" 
      (selectModal)="onShowModal($event)" 
      (selectChat)="onSelectChat($event)"
      />
 
+     <!-- Messages -->
     <app-message 
      *ngIf="selectedChat" 
      (selectModal)="onShowModal($event)"  
      [messages]="selectedChat?.messages" 
-     [ngClass]="modalNameToShow === 'search-message'? 'w-40': ''"
-
-    />
+     [ngClass]="modalNameToShow === 'search-message' || 
+     modalNameToShow === 'contact-info' ? 'w-40': ''" 
+     />
 
     <app-no-selected-chat *ngIf="!selectedChat"  
-      [ngClass]="modalNameToShow === 'search-message'? 'w-40': ''"
+      [ngClass]="modalNameToShow === 'search-message'  || 
+      modalNameToShow === 'contact-info' ? 'w-40': ''"
+      
       />
   </div>
 </section>

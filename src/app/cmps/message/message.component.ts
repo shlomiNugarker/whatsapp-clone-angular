@@ -14,4 +14,7 @@ export class MessageComponent {
   showSearchMessage() {
     this.onSelectModal.emit('search-message');
   }
+  showContactInfo() {
+    this.onSelectModal.emit('contact-info');
+  }
 }
