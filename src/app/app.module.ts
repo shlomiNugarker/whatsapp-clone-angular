@@ -20,6 +20,7 @@ import { NewChatComponent } from './cmps/new-chat/new-chat.component';
 import { ContactListComponent } from './cmps/contact-list/contact-list.component';
 import { SearchMessageComponent } from './cmps/search-message/search-message.component';
 import { ContactInfoComponent } from './cmps/contact-info/contact-info.component';
+import { CommunitiesComponent } from './cmps/communities/communities.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ContactInfoComponent } from './cmps/contact-info/contact-info.component
     ContactListComponent,
     SearchMessageComponent,
     ContactInfoComponent,
+    CommunitiesComponent,
   ],
   imports: [
     BrowserModule,

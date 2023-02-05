@@ -7,7 +7,14 @@
     <!-- modals: -->
     <app-new-chat 
       *ngIf="modalNameToShow === 'new-chat'" 
-       (selectModal)="onShowModal($event)" 
+      (selectModal)="onShowModal($event)" 
+    
+      />
+      
+      <app-communities 
+      *ngIf="modalNameToShow === 'communities'" 
+      (selectModal)="onShowModal($event)"
+    
     />
 
     <app-profile

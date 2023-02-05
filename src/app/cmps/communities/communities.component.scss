@@ -1,0 +1,120 @@
+:host {
+  width: 30%;
+  height: 100%;
+  position: absolute;
+}
+
+.communities {
+  height: 100%;
+  color: #202124;
+  display: inline-block;
+  width: 100%;
+  background-color: #f0f2f5;
+
+  //   Header:
+  .header {
+    width: 100%;
+    padding-right: 20px;
+    padding-left: 23px;
+    background-color: #008069;
+    z-index: 200;
+    box-sizing: border-box;
+    display: flex;
+    flex: none;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 108px;
+    color: #fff;
+
+    .container {
+      padding: 0;
+      background-color: transparent;
+      text-align: initial;
+      height: 59px;
+      display: flex;
+      flex: none;
+      align-items: center;
+      width: 100%;
+
+      .back {
+        width: 53px;
+        cursor: pointer;
+      }
+      .text {
+        h1 {
+          font-weight: 500;
+          margin-top: -3px;
+          flex-grow: 1;
+          max-height: 46px;
+          overflow: hidden;
+          font-size: 19px;
+          line-height: 23px;
+          overflow-wrap: break-word;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+        }
+      }
+    }
+  }
+
+  // New community:
+  .new-community {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #eaeef0;
+    color: #3b4a54;
+    cursor: pointer;
+    margin-bottom: 10px;
+    background-color: white;
+    span {
+      border-radius: 15px;
+      margin: 0 5px;
+      height: 48px;
+      width: 48px;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: black;
+      background-color: #00a884;
+    }
+    p {
+    }
+  }
+
+  // Communities list:
+  .communities-list {
+    height: calc(100vh - 234px);
+    overflow-y: auto;
+    .community-preview {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      color: #3b4a54;
+      cursor: pointer;
+      background-color: white;
+      border-top: 1px solid #eaeef0;
+      span {
+        border-radius: 15px;
+        margin: 0 5px;
+        height: 48px;
+        width: 48px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: black;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 50%;
+        }
+      }
+      p {
+      }
+    }
+  }
+}

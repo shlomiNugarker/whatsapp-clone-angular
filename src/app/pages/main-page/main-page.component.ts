@@ -10,7 +10,9 @@ import { ChatService } from 'src/app/services/chat-service/chat.service';
 export class MainPageComponent implements OnInit {
   chats: Chat[] = [];
   selectedChat: Chat | null = null;
-  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info'
+
+  // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities'
+  modalNameToShow: string = '';
 
   constructor(private chatService: ChatService) {}
 

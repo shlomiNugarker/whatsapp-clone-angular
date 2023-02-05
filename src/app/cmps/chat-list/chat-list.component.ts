@@ -22,5 +22,8 @@ export class ChatListComponent {
   showNewChat() {
     this.onSelectModal.emit('new-chat');
   }
+  showCommunities() {
+    this.onSelectModal.emit('communities');
+  }
   constructor() {}
 }
