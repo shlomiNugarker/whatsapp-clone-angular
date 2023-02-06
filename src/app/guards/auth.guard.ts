@@ -5,22 +5,23 @@ import {
   RouterStateSnapshot,
   Router,
 } from '@angular/router';
+import { AuthService } from '../services/auth-service/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  constructor(private router: Router) {}
-  async canActivate(
-    route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Promise<boolean> {
-    const isLoggedIn = true; // TODO: handle case to check if logged in
+  constructor(private router: Router, private authService: AuthService) {}
+  async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    const currentUser = this.authService.getCurrentUser();
 
-    if (isLoggedIn) return isLoggedIn;
+    if (currentUser?.accessToken) {
+      const res: { isValidToken: boolean } =
+        await this.authService.isValidToken(currentUser.accessToken);
+      if (res.isValidToken) return true;
+    }
 
-    this.router.navigate(['/sign-in-page']);
+    this.router.navigateByUrl('/sign-in-page');
     return false;
-    // return isLoggedIn;
   }
 }
