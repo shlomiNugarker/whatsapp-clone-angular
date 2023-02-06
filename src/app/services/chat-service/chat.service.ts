@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Chat } from 'src/app/models/chat';
 
@@ -9,73 +9,40 @@ import { Chat } from 'src/app/models/chat';
   providedIn: 'root',
 })
 export class ChatService {
-  chats = [
+  constructor(private http: HttpClient) {}
+
+  chats: Chat[] = [
     {
       id: '1',
       userId: ['1', '2'],
+      createdAt: 455445454,
       messages: [
         {
-          id: 1,
+          id: 'fgsdfg',
+          userId: 'sdgdsgf',
           text: 'hey there :)',
           createdBy: '61',
           reactions: [],
           createdAt: 43436535,
+          replies: [],
         },
         {
-          id: 1,
-          text: 'hey dsfd :)',
-          createdBy: '15',
-          reactions: [],
-          createdAt: 4343535,
-        },
-
-        {
-          id: 1,
-          text: ' aer aef a ffrgg there :)',
-          createdBy: '12',
-          reactions: [],
-          createdAt: 43434535,
-        },
-      ],
-    },
-    {
-      id: '2',
-      userId: ['1', '2'],
-      messages: [
-        {
-          id: 1,
-          text: 'hey there :)',
+          id: 'fgg',
+          userId: 'sdgdsgf',
+          text: 'hey tdfhere :)',
           createdBy: '61',
           reactions: [],
           createdAt: 43436535,
+          replies: [],
         },
         {
-          id: 1,
-          text: 'hey dsfd :)',
-          createdBy: '15',
+          id: 'fgg',
+          userId: 'sdgdsgf',
+          text: 'hey tf sdf  sd here :)',
+          createdBy: '61',
           reactions: [],
-          createdAt: 4343535,
-        },
-        {
-          id: 1,
-          text: 'dg tgggg deg sdhere :)',
-          createdBy: '14',
-          reactions: [],
-          createdAt: 43432535,
-        },
-        {
-          id: 1,
-          text: 'hey sg  adeffaf af afra  :)',
-          createdBy: '13',
-          reactions: [],
-          createdAt: 43453535,
-        },
-        {
-          id: 1,
-          text: ' aer aef a ffrgg there :)',
-          createdBy: '12',
-          reactions: [],
-          createdAt: 43434535,
+          createdAt: 43436535,
+          replies: [],
         },
       ],
     },
@@ -86,13 +53,17 @@ export class ChatService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
 
-  constructor(private http: HttpClient) {}
+  private _chats$ = new BehaviorSubject<Chat[]>([]);
+  public chats$ = this._chats$.asObservable();
 
-  getChats(): Observable<Chat[]> {
-    return of(this.chats as any);
+  public query() {
+    this._chats$.next(this.chats);
     // return this.http.get<Chat[]>(this.apiUrl).pipe(
     //   tap((_) => console.log('fetched chats')),
-    //   catchError(this.handleError<Chat[]>('getChats', []))
+    //   map((chats) => {
+    //     this._chats$.next(chats);
+    //   }),
+    //   catchError(this.handleError<Chat[]>('query Chats', []))
     // );
   }
 

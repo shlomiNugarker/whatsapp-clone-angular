@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
@@ -25,12 +25,12 @@ export class SignUpPageComponent {
     const val = this.form.value;
 
     if (val.email && val.password && val.fullname) {
-      this.authService
-        .signup(val.email, val.password, val.fullname)
-        .subscribe(() => {
-          console.log('User is signed up');
-          this.router.navigateByUrl('/');
-        });
+      try {
+        this.authService.signup(val.email, val.password, val.fullname);
+        this.router.navigateByUrl('/sign-in-page');
+      } catch (err) {
+        console.log(err);
+      }
     }
   }
 }

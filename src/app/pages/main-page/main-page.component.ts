@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Observable, Subscription } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
 import { ChatService } from 'src/app/services/chat-service/chat.service';
 
@@ -7,29 +8,30 @@ import { ChatService } from 'src/app/services/chat-service/chat.service';
   templateUrl: './main-page.component.html',
   styleUrls: ['./main-page.component.scss'],
 })
-export class MainPageComponent implements OnInit {
-  chats: Chat[] = [];
-  selectedChat: Chat | null = null;
-
-  // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status
-  modalNameToShow: string = '';
-
+export class MainPageComponent implements OnInit, OnDestroy {
   constructor(private chatService: ChatService) {}
 
-  ngOnInit(): void {
-    this.loadChats();
-  }
+  subscription: Subscription | undefined;
+  chats: Chat[] | undefined;
+  selectedChat: Chat | null = null;
 
-  loadChats() {
-    this.chatService.getChats().subscribe((chats: Chat[]) => {
+  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status
+
+  ngOnInit(): void {
+    this.chatService.query();
+    this.subscription = this.chatService.chats$.subscribe((chats) => {
       this.chats = chats;
-      // this.selectedChat = this.chats[0];
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.subscription) this.subscription.unsubscribe();
+  }
+
   onSelectChat(chatId: string) {
-    const chatToShow = this.chats.find((chat) => chat.id === chatId);
-    this.selectedChat = chatToShow || null;
+    if (!this.chats) return;
+    const chatIdx = this.chats.findIndex((chat) => chat.id === chatId);
+    this.selectedChat = this.chats[chatIdx];
   }
 
   onShowModal(name: string) {

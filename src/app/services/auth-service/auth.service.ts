@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of, lastValueFrom } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
+  private _currentUser$ = new BehaviorSubject<User | null>(null);
+  public currentUser$ = this._currentUser$.asObservable();
+
   private apiUrl = 'http://localhost:3030/api/auth';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
+    withCredentials: true,
   };
 
   constructor(private http: HttpClient) {}
@@ -27,38 +32,54 @@ export class AuthService {
         this.httpOptions
       )
       .pipe(
-        tap((res: any) => console.log(`login!, res=${res}`)),
-        catchError(this.handleError<any>('login'))
+        map((user) => {
+          if (user && user.accessToken) {
+            localStorage.setItem('currentUser', JSON.stringify(user));
+            this._currentUser$.next(user);
+            return user;
+          }
+        })
       );
-
-    // this is just the HTTP call,
-    // we still need to handle the reception of the token
   }
 
   signup(email: string, password: string, fullname: string) {
-    return this.http
-      .post<any>(
-        `${this.apiUrl}/signup`,
-        {
-          email,
-          password,
-          fullname,
-        },
-        this.httpOptions
-      )
-      .pipe(
-        tap((res: any) => console.log(`signup!, res=${res}`)),
-        catchError(this.handleError<any>('signup'))
+    try {
+      return lastValueFrom(
+        this.http.post<any>(
+          `${this.apiUrl}/signup`,
+          {
+            email,
+            password,
+            fullname,
+          },
+          this.httpOptions
+        )
       );
+    } catch (err) {
+      console.log(err);
+      return null;
+    }
   }
+
   logout() {
+    localStorage.removeItem('currentUser');
+    this._currentUser$.next(null);
     return this.http.post<any>(`${this.apiUrl}/logout`, this.httpOptions);
   }
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
+  isValidToken(accessToken: string) {
+    return lastValueFrom(
+      this.http.post<any>(
+        `${this.apiUrl}/verify`,
+        { accessToken },
+        this.httpOptions
+      )
+    );
+  }
+
+  getCurrentUser() {
+    const userFromStorage = localStorage.getItem('currentUser');
+    const currentUser = userFromStorage ? JSON.parse(userFromStorage) : null;
+    return currentUser;
   }
 }

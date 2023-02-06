@@ -23,9 +23,8 @@ export class SignInPageComponent {
   login() {
     const val = this.form.value;
     if (val.email && val.password) {
-      this.authService.login(val.email, val.password).subscribe(() => {
-        console.log('User is logged in');
-        this.router.navigateByUrl('/');
+      this.authService.login(val.email, val.password).subscribe((res) => {
+        this.router.navigateByUrl('/main-page');
       });
     }
   }
