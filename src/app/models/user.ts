@@ -3,4 +3,5 @@ export interface User {
   fullname: string;
   email: string;
   contacts: string[];
+  accessToken: string;
 }
