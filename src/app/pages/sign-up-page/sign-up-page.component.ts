@@ -21,12 +21,12 @@ export class SignUpPageComponent {
       fullname: ['', Validators.required],
     });
   }
-  signup() {
+  async signup() {
     const val = this.form.value;
 
     if (val.email && val.password && val.fullname) {
       try {
-        this.authService.signup(val.email, val.password, val.fullname);
+        await this.authService.signup(val.email, val.password, val.fullname);
         this.router.navigateByUrl('/sign-in-page');
       } catch (err) {
         console.log(err);

@@ -9,7 +9,9 @@ import { User } from 'src/app/models/user';
   providedIn: 'root',
 })
 export class AuthService {
-  private _currentUser$ = new BehaviorSubject<User | null>(null);
+  private _currentUser$ = new BehaviorSubject<User | null>(
+    this.getCurrentUser()
+  );
   public currentUser$ = this._currentUser$.asObservable();
 
   private apiUrl = 'http://localhost:3030/api/auth';
