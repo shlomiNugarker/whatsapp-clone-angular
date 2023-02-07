@@ -8,7 +8,13 @@
      <!-- Chats: -->
     <app-chat-list [chats]="chats" [selectedChatId]="selectedChat?.id" (selectModal)="onShowModal($event)" (selectChat)="onSelectChat($event)" ></app-chat-list>
     <!-- Messages -->
-    <app-message *ngIf="selectedChat" (selectModal)="onShowModal($event)"  [messages]="selectedChat?.messages"  [ngClass]="modalNameToShow === 'search-message' || modalNameToShow === 'contact-info' ? 'w-40': ''" />
+    <app-message
+     *ngIf="selectedChat && messages" 
+     (selectModal)="onShowModal($event)" 
+     [messages]="messages" 
+     [ngClass]="modalNameToShow === 'search-message' || modalNameToShow === 'contact-info' ? 'w-40': ''" 
+     />
+    
     <!-- No-selected chat: -->
     <app-no-selected-chat *ngIf="!selectedChat" [ngClass]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': ''"  />
 
