@@ -4,51 +4,17 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Chat } from 'src/app/models/chat';
+import { AuthService } from '../auth-service/auth.service';
+import { User } from 'src/app/models/user';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChatService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
+  currentUser: User | null = null;
 
-  chats: Chat[] = [
-    {
-      id: '1',
-      userId: ['1', '2'],
-      createdAt: 455445454,
-      messages: [
-        {
-          id: 'fgsdfg',
-          userId: 'sdgdsgf',
-          text: 'hey there :)',
-          createdBy: '61',
-          reactions: [],
-          createdAt: 43436535,
-          replies: [],
-        },
-        {
-          id: 'fgg',
-          userId: 'sdgdsgf',
-          text: 'hey tdfhere :)',
-          createdBy: '61',
-          reactions: [],
-          createdAt: 43436535,
-          replies: [],
-        },
-        {
-          id: 'fgg',
-          userId: 'sdgdsgf',
-          text: 'hey tf sdf  sd here :)',
-          createdBy: '61',
-          reactions: [],
-          createdAt: 43436535,
-          replies: [],
-        },
-      ],
-    },
-  ];
-
-  private apiUrl = 'http://localhost:3030/api/chats';
+  private apiUrl = 'http://localhost:3030/api/chat';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -57,20 +23,16 @@ export class ChatService {
   public chats$ = this._chats$.asObservable();
 
   public query() {
-    this._chats$.next(this.chats);
-    // return this.http.get<Chat[]>(this.apiUrl).pipe(
-    //   tap((_) => console.log('fetched chats')),
-    //   map((chats) => {
-    //     this._chats$.next(chats);
-    //   }),
-    //   catchError(this.handleError<Chat[]>('query Chats', []))
-    // );
-  }
+    this.authService.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+    if (!this.currentUser) return of();
 
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-      return of(result as T);
-    };
+    return this.http.get<Chat[]>(`${this.apiUrl}/${this.currentUser.id}`).pipe(
+      tap((_) => console.log('fetched chats')),
+      map((chats) => {
+        this._chats$.next(chats);
+      })
+    );
   }
 }
