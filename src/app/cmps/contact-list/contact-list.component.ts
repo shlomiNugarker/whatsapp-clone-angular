@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-contact-list',
   templateUrl: './contact-list.component.html',
   styleUrls: ['./contact-list.component.scss'],
 })
-export class ContactListComponent {
-  contacts = [1, 2, 3, 4, 5, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6, 6];
+export class ContactListComponent implements OnInit {
+  @Input() contacts: User[] | null | undefined;
+
+  ngOnInit(): void {
+    // console.log(this.contacts);
+  }
 }
