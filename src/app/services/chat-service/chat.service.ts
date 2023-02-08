@@ -29,10 +29,20 @@ export class ChatService {
     if (!this.currentUser) return of();
 
     return this.http.get<Chat[]>(`${this.apiUrl}/${this.currentUser.id}`).pipe(
-      tap((_) => console.log('fetched chats')),
+      // tap((_) => console.log('fetched chats', _)),
       map((chats) => {
+        chats.forEach((chat) => {
+          chat.messages = JSON.parse(chat.messages as any) || [];
+        });
+
+        console.log(chats);
+
         this._chats$.next(chats);
       })
     );
+  }
+
+  saveChat() {
+    console.log('saveChat');
   }
 }
