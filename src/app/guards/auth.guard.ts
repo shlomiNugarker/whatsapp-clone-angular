@@ -13,11 +13,12 @@ import { AuthService } from '../services/auth-service/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(private router: Router, private authService: AuthService) {}
   async canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    const currentUser = this.authService.getCurrentUser();
+    const accessToken = this.authService.getAccessToken();
 
-    if (currentUser?.accessToken) {
+    if (accessToken) {
       const res: { isValidToken: boolean } =
-        await this.authService.isValidToken(currentUser.accessToken);
+        await this.authService.isValidToken(accessToken);
+
       if (res.isValidToken) return true;
     }
 
