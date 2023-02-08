@@ -3,6 +3,7 @@ import { Observable, Subscription } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { ChatService } from 'src/app/services/chat-service/chat.service';
 import { MessageService } from 'src/app/services/message-service/message.service';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -16,14 +17,17 @@ export class MainPageComponent implements OnInit, OnDestroy {
   constructor(
     private chatService: ChatService,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) {}
 
   chatSubscription: Subscription | undefined;
   messageSubscription: Subscription | undefined;
   contactsSubscription: Subscription | undefined;
+  userSubScription: Subscription | undefined;
   chats: Chat[] | undefined;
   contacts: User[] = [];
+  currentUser: User | null = null;
   selectedChat: Chat | null = null;
   messages: Message[] | null = null; // in specific selected chat
   modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status
@@ -34,6 +38,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
       this.chats = chats;
     });
 
+    this.userSubScription = this.authService.currentUser$.subscribe((user) => {
+      this.currentUser = user;
+    });
+
     this.getContacts();
   }
 
@@ -41,6 +49,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.chatSubscription) this.chatSubscription.unsubscribe();
     if (this.messageSubscription) this.messageSubscription.unsubscribe();
     if (this.contactsSubscription) this.contactsSubscription.unsubscribe();
+    if (this.userSubScription) this.userSubScription.unsubscribe();
   }
 
   onSelectChat(chatId: string) {

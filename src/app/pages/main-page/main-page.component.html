@@ -10,9 +10,8 @@
       [selectedChatId]="selectedChat?.id"
       (selectModal)="onShowModal($event)"
       (selectChat)="onSelectChat($event)"
-
-        >
-    </app-chat-list>
+      [currentUser]="currentUser"
+    ></app-chat-list>
 
     <!-- Messages -->
     <app-message
@@ -31,7 +30,11 @@
 
     <app-communities *ngIf="modalNameToShow === 'communities'" (selectModal)="onShowModal($event)" />
 
-    <app-profile *ngIf="modalNameToShow === 'profile'" (selectModal)="onShowModal($event)" />
+    <app-profile
+     *ngIf="modalNameToShow === 'profile'"
+      (selectModal)="onShowModal($event)"
+      [currentUser]="currentUser"
+       />
 
     <app-search-message *ngIf="modalNameToShow === 'search-message'" (selectModal)="onShowModal($event)" />
 
