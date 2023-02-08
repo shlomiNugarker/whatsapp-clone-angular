@@ -11,12 +11,14 @@ import { AuthService } from '../auth-service/auth.service';
 })
 export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
-  private apiUrl = 'http://localhost:3030/api/user';
+  readonly apiUrl = 'http://localhost:3030/api/user';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true,
   };
+
+  cashingUsers: { [key: string]: User } = {};
 
   private _users$ = new BehaviorSubject<User[]>([]);
   public users$ = this._users$.asObservable();
@@ -32,12 +34,21 @@ export class UserService {
     );
   }
 
-  public getUserById(userId: string): Observable<any> {
+  public async getUserById(userId: number) {
     const url = `${this.apiUrl}/userId/${userId}`;
-    return this.http.get<any>(url, this.httpOptions).pipe(
-      tap((_) => console.log('fetched user with id: ', userId)),
-      catchError(this.handleError<any[]>('getUserById', []))
-    );
+    try {
+      if (this.cashingUsers[userId]) return this.cashingUsers[userId];
+
+      const user = await lastValueFrom(
+        this.http.get<any>(url, this.httpOptions)
+      );
+
+      this.cashingUsers[userId] = user;
+
+      return user;
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   public getUserByEmail(email: string) {

@@ -24,21 +24,18 @@
     <!-- Image: -->
     <div class="img-container">
       <div>
-        <img
-          src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
-          alt=""
-        />
+        <img [src]="otherUser?.imgUrl" alt="" />
       </div>
       <div>
-        <h2>Mom</h2>
-        <p>0529526762</p>
+        <h2>{{ otherUser?.fullname }}</h2>
+        <p>{{ otherUser?.email }}</p>
       </div>
     </div>
 
     <!-- About: -->
     <div class="about">
       <p>About</p>
-      <span>my abouttt</span>
+      <span>m{{ otherUser?.about }}</span>
     </div>
 
     <!-- Media, link, docs: -->

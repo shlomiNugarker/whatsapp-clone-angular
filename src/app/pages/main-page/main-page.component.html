@@ -4,7 +4,7 @@
   </div>
 
   <div class="wrapper">
-    <!-- Main cmps: -->
+    <!-- **Main cmps:** -->
      <!-- Chats: -->
     <app-chat-list [chats]="chats"
       [selectedChatId]="selectedChat?.id"
@@ -15,20 +15,32 @@
 
     <!-- Messages -->
     <app-message
-     *ngIf="selectedChat && messages" 
+     *ngIf="selectedChat" 
      (selectModal)="onShowModal($event)" 
-     [messages]="messages" 
+     [messages]="selectedChat.messages" 
+     [otherUser]="otherUser" 
+     [selectedChat]="selectedChat" 
      [ngClass]="modalNameToShow === 'search-message' || modalNameToShow === 'contact-info' ? 'w-40': ''" 
     />
     
 
     <!-- No-selected chat: -->
-    <app-no-selected-chat *ngIf="!selectedChat" [ngClass]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': ''"  />
+    <app-no-selected-chat 
+     *ngIf="!selectedChat" 
+     [ngClass]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': ''"  
+    />
 
-    <!-- modals: -->
-    <app-new-chat *ngIf="modalNameToShow === 'new-chat'" (selectModal)="onShowModal($event)" [contacts]="contacts" />
+    <!-- **modals:** -->
+    <app-new-chat *ngIf="modalNameToShow === 'new-chat'"
+     (selectModal)="onShowModal($event)" 
+     (selectContact)="onSelectContact($event)"
+     [contacts]="contacts" 
+    />
 
-    <app-communities *ngIf="modalNameToShow === 'communities'" (selectModal)="onShowModal($event)" />
+    <app-communities 
+     *ngIf="modalNameToShow === 'communities'" 
+     (selectModal)="onShowModal($event)" 
+    />
 
     <app-profile
      *ngIf="modalNameToShow === 'profile'"
@@ -36,9 +48,16 @@
       [currentUser]="currentUser"
        />
 
-    <app-search-message *ngIf="modalNameToShow === 'search-message'" (selectModal)="onShowModal($event)" />
+    <app-search-message 
+     *ngIf="modalNameToShow === 'search-message'" 
+     (selectModal)="onShowModal($event)" 
+    />
 
-    <app-contact-info *ngIf="modalNameToShow === 'contact-info'" (selectModal)="onShowModal($event)"  />
+    <app-contact-info 
+     *ngIf="modalNameToShow === 'contact-info'" 
+     (selectModal)="onShowModal($event)" 
+     [otherUser]="otherUser"  
+    />
 
     <!-- <app-status *ngIf="modalNameToShow === 'status'" /> -->
   </div>

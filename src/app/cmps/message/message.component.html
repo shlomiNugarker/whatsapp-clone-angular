@@ -1,13 +1,10 @@
 <section class="message">
   <!-- Header: -->
   <header class="header">
-    <div class="container" (click)="showContactInfo()">
-      <img
-        src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
-        alt=""
-      />
+    <div class="container" (click)="showContactInfo(otherUser?.id)">
+      <img [src]="otherUser?.imgUrl" alt="" />
       <div class="message-details">
-        <h2>Doctor Code</h2>
+        <h2>{{ otherUser?.fullname }}</h2>
         <p>other users</p>
       </div>
     </div>
@@ -62,7 +59,7 @@
     <div
       *ngFor="let message of messages"
       class="message-preview"
-      ngClass="message-preview my-msg friend-msg "
+      [ngClass]="message.userId === currentUser?.id ? 'my-msg' : 'friend-msg'"
     >
       <div class="msg">
         <span class="x">
@@ -144,6 +141,7 @@
             ></path></svg
         ></span>
       </div>
+      <!-- Input: -->
       <input class="input" type="text" placeholder="Type a message" />
 
       <!-- Voice message: -->

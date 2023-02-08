@@ -6,15 +6,12 @@ import { User } from 'src/app/models/user';
   templateUrl: './new-chat.component.html',
   styleUrls: ['./new-chat.component.scss'],
 })
-export class NewChatComponent implements OnInit {
+export class NewChatComponent {
   @Input() contacts: User[] | null | undefined;
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
+  @Output('selectContact') onSelectContact = new EventEmitter<number>();
 
   goBack() {
     this.onSelectModal.emit('');
-  }
-
-  ngOnInit(): void {
-    // console.log('contacts', this.contacts);
   }
 }

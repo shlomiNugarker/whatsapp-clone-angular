@@ -3,7 +3,11 @@
   <div class="title">Contacts on Achchhapp</div>
 
   <!-- Contact preview: -->
-  <section *ngFor="let contact of contacts" class="contact-preview">
+  <section
+    *ngFor="let contact of contacts"
+    class="contact-preview"
+    (click)="onSelectContact(contact.id)"
+  >
     <div class="img-container">
       <img [src]="contact.imgUrl" class="img" alt="" />
     </div>

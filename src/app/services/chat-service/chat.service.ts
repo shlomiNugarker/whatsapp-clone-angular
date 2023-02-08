@@ -14,7 +14,7 @@ export class ChatService {
   constructor(private http: HttpClient, private authService: AuthService) {}
   currentUser: User | null = null;
 
-  private apiUrl = 'http://localhost:3030/api/chat';
+  readonly apiUrl = 'http://localhost:3030/api/chat';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
@@ -35,7 +35,7 @@ export class ChatService {
           chat.messages = JSON.parse(chat.messages as any) || [];
         });
 
-        console.log(chats);
+        // console.log(chats);
 
         this._chats$.next(chats);
       })

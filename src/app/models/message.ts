@@ -3,9 +3,9 @@ import { Reply } from './reply';
 
 export interface Message {
   id: string;
-  userId: string;
+  userId: number;
   text: string;
-  createdBy: string;
+  // createdBy: string;
   reactions: Reaction[];
   createdAt: number;
   replies: Reply[];

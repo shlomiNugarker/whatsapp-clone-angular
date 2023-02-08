@@ -107,7 +107,7 @@
     height: calc(100vh - 169px);
     overflow-y: auto;
 
-    //
+    // Chat-preview:
     .chat-preview {
       &.selected {
         background-color: #f0f2f5;
@@ -124,7 +124,7 @@
       align-items: center;
       cursor: pointer;
 
-      img {
+      .img {
         border-radius: 50%;
         width: 50px;
         height: 50px;

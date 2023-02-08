@@ -1,4 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-contact-info',
@@ -7,6 +8,7 @@ import { Component, EventEmitter, Output } from '@angular/core';
 })
 export class ContactInfoComponent {
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
+  @Input() otherUser: User | null = null; // the user you are chatting,depends on selectedChat
 
   goBack() {
     this.onSelectModal.emit('');

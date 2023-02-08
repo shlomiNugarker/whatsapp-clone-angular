@@ -14,7 +14,7 @@ export class AuthService {
   );
   public currentUser$ = this._currentUser$.asObservable();
 
-  private apiUrl = 'http://localhost:3030/api/auth';
+  readonly apiUrl = 'http://localhost:3030/api/auth';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),

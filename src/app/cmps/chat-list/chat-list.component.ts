@@ -10,16 +10,16 @@ import { User } from 'src/app/models/user';
 })
 export class ChatListComponent implements OnInit {
   @Input() chats: Chat[] | null | undefined;
-  @Input() selectedChatId: string | undefined;
+  @Input() selectedChatId: number | undefined;
   @Input() currentUser: User | null | undefined;
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
-  @Output('selectChat') onSelect = new EventEmitter<string>();
+  @Output('selectChat') onSelect = new EventEmitter<number>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  selectChat(chatId: string) {
+  selectChat(chatId: number) {
     this.onSelect.emit(chatId);
   }
 
