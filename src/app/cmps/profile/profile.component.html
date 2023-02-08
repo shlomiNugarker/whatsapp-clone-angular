@@ -31,10 +31,7 @@
   <!-- Image: -->
   <div class="img-container">
     <div>
-      <img
-        src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
-        alt=""
-      />
+      <img [src]="currentUser?.imgUrl" alt="" />
     </div>
   </div>
 
@@ -42,12 +39,14 @@
   <div class="name">
     <div class="title"><span>Your name</span></div>
     <div class="name-text">
-      <p *ngIf="!isEditName">Shlomi</p>
+      <p *ngIf="!isEditName">
+        {{ currentUser?.fullname }}
+      </p>
 
       <!-- Edit name: -->
 
       <div class="edit" *ngIf="isEditName">
-        <input type="text" />
+        <input type="text" [(ngModel)]="fullnameToEdit" />
         <!-- Emoji svg: -->
         <span class="emojis"
           ><svg
@@ -134,11 +133,11 @@
   <div class="about">
     <div class="title"><span>About</span></div>
     <div class="about-text">
-      <p *ngIf="!isEditAbout">My about</p>
+      <p *ngIf="!isEditAbout">{{ aboutToEdit }}</p>
 
-      <!-- Edit name: -->
+      <!-- Edit about: -->
       <div class="edit" *ngIf="isEditAbout">
-        <input type="text" />
+        <input type="text" [(ngModel)]="aboutToEdit" />
         <!-- Emoji svg: -->
         <span class="emojis"
           ><svg
