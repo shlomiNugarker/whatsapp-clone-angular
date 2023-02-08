@@ -38,13 +38,20 @@ export class AuthService {
           const { user, accessToken } = userWithToken;
 
           if (user && accessToken) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
+            // localStorage.setItem('currentUser', JSON.stringify(user));
+            // this._currentUser$.next(user);
             localStorage.setItem('accessToken', JSON.stringify(accessToken));
-            this._currentUser$.next(user);
+            this.updateCurrentUser(user);
             return user;
           }
         })
       );
+  }
+
+  public updateCurrentUser(user: User) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this._currentUser$.next(user);
+    return user;
   }
 
   signup(email: string, password: string, fullname: string) {
