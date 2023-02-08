@@ -1,7 +1,8 @@
 export interface User {
   id: string;
   fullname: string;
+  imgUrl: string;
   email: string;
   contacts: string[];
-  accessToken: string;
+  about: string;
 }

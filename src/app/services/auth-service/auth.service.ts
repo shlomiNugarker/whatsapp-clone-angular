@@ -34,9 +34,12 @@ export class AuthService {
         this.httpOptions
       )
       .pipe(
-        map((user) => {
-          if (user && user.accessToken) {
+        map((userWithToken) => {
+          const { user, accessToken } = userWithToken;
+
+          if (user && accessToken) {
             localStorage.setItem('currentUser', JSON.stringify(user));
+            localStorage.setItem('accessToken', JSON.stringify(accessToken));
             this._currentUser$.next(user);
             return user;
           }
@@ -65,6 +68,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('currentUser');
+    localStorage.removeItem('accessToken');
+
     this._currentUser$.next(null);
     return this.http.post<any>(`${this.apiUrl}/logout`, this.httpOptions);
   }
@@ -83,5 +88,11 @@ export class AuthService {
     const userFromStorage = localStorage.getItem('currentUser');
     const currentUser = userFromStorage ? JSON.parse(userFromStorage) : null;
     return currentUser;
+  }
+
+  getAccessToken() {
+    const tokenFromStorage = localStorage.getItem('accessToken');
+    const accessToken = tokenFromStorage ? JSON.parse(tokenFromStorage) : null;
+    return accessToken;
   }
 }
