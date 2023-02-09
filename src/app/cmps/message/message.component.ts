@@ -12,7 +12,6 @@ import { Chat } from 'src/app/models/chat';
 import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
-import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-message',
@@ -24,14 +23,13 @@ export class MessageComponent implements OnInit, OnDestroy {
   @Input() selectedChat: Chat | null = null;
   @Input() otherUser: User | null = null; // the user you are chatting,depends on selectedChat
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
+  @Output('onSendMessage') onSendMsg = new EventEmitter<string>();
 
   currentUser: User | null = null;
   userSubscription: Subscription | undefined;
+  textMsg: string = '';
 
-  constructor(
-    private authService: AuthService,
-    private userService: UserService
-  ) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit(): void {
     this.userSubscription = this.authService.currentUser$.subscribe((user) => {
@@ -48,6 +46,9 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
   showContactInfo(contactId: number | undefined) {
     this.onSelectModal.emit('contact-info');
-    console.log(contactId);
+  }
+  onSend() {
+    this.onSendMsg.emit(this.textMsg);
+    this.textMsg = '';
   }
 }

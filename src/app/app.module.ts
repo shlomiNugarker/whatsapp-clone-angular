@@ -22,6 +22,26 @@ import { SearchMessageComponent } from './cmps/search-message/search-message.com
 import { ContactInfoComponent } from './cmps/contact-info/contact-info.component';
 import { CommunitiesComponent } from './cmps/communities/communities.component';
 import { StatusComponent } from './cmps/status/status.component';
+import { StatusLogoComponent } from './cmps/svgs/status-logo/status-logo.component';
+import { CommunityLogoComponent } from './cmps/svgs/community-logo/community-logo.component';
+import { NewChatLogoComponent } from './cmps/svgs/new-chat-logo/new-chat-logo.component';
+import { MenuLogoComponent } from './cmps/svgs/menu-logo/menu-logo.component';
+import { SearchLogoComponent } from './cmps/svgs/search-logo/search-logo.component';
+import { FilterLogoComponent } from './cmps/svgs/filter-logo/filter-logo.component';
+import { BackLogoComponent } from './cmps/svgs/back-logo/back-logo.component';
+import { EmojiLogoComponent } from './cmps/svgs/emoji-logo/emoji-logo.component';
+import { CheckMarkLogoComponent } from './cmps/svgs/check-mark-logo/check-mark-logo.component';
+import { EditLogoComponent } from './cmps/svgs/edit-logo/edit-logo.component';
+import { AttachLogoComponent } from './cmps/svgs/attach-logo/attach-logo.component';
+import { VoiceLogoComponent } from './cmps/svgs/voice-logo/voice-logo.component';
+import { SendLogoComponent } from './cmps/svgs/send-logo/send-logo.component';
+import { EdgeGreenMsgLogoComponent } from './cmps/svgs/edge-green-msg-logo/edge-green-msg-logo.component';
+import { NewCommunityLogoComponent } from './cmps/svgs/new-community-logo/new-community-logo.component';
+import { ArrowRightLogoComponent } from './cmps/svgs/arrow-right-logo/arrow-right-logo.component';
+import { DeleteLogoComponent } from './cmps/svgs/delete-logo/delete-logo.component';
+import { XLogoComponent } from './cmps/svgs/x-logo/x-logo.component';
+import { AchchhAppLogoComponent } from './cmps/svgs/achchh-app-logo/achchh-app-logo.component';
+import { LockLogoComponent } from './cmps/svgs/lock-logo/lock-logo.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +61,26 @@ import { StatusComponent } from './cmps/status/status.component';
     ContactInfoComponent,
     CommunitiesComponent,
     StatusComponent,
+    StatusLogoComponent,
+    CommunityLogoComponent,
+    NewChatLogoComponent,
+    MenuLogoComponent,
+    SearchLogoComponent,
+    FilterLogoComponent,
+    BackLogoComponent,
+    EmojiLogoComponent,
+    CheckMarkLogoComponent,
+    EditLogoComponent,
+    AttachLogoComponent,
+    VoiceLogoComponent,
+    SendLogoComponent,
+    EdgeGreenMsgLogoComponent,
+    NewCommunityLogoComponent,
+    ArrowRightLogoComponent,
+    DeleteLogoComponent,
+    XLogoComponent,
+    AchchhAppLogoComponent,
+    LockLogoComponent,
   ],
   imports: [
     BrowserModule,
