@@ -38,12 +38,28 @@ export class ChatService {
     return this.http.get<Chat[]>(`${this.apiUrl}/${this.currentUser.id}`).pipe(
       map((chats) => {
         chats.forEach((chat) => {
-          chat.messages = JSON.parse(chat.messages as any) || [];
+          chat = this.parseChat(chat);
         });
 
         this._chats$.next(chats);
       })
     );
+  }
+
+  parseChat(chat: Chat) {
+    if (chat.messages) chat.messages = JSON.parse(chat.messages as any) || [];
+    if (chat.replies) chat.replies = JSON.parse(chat.replies as any) || [];
+    if (chat.reactions)
+      chat.reactions = JSON.parse(chat.reactions as any) || [];
+
+    return chat;
+  }
+
+  stringifyChat(chat: Chat) {
+    if (chat.messages) chat.messages = JSON.stringify(chat.messages) as any;
+    if (chat.replies) chat.replies = JSON.stringify(chat.replies) as any;
+    if (chat.reactions) chat.reactions = JSON.stringify(chat.reactions) as any;
+    return chat;
   }
 
   public sendMessage(chat: Chat, currUserId: number, messageText: string) {
@@ -52,22 +68,52 @@ export class ChatService {
     chat.messages.push(messageToAdd);
     let chatToSave = Object.assign({}, chat);
 
-    chatToSave.messages = JSON.stringify(chat.messages) as any;
+    this.saveChat(chatToSave);
+  }
 
+  saveChat(chat: Chat) {
+    chat = this.stringifyChat(chat);
+    chat.id ? this.updateChat(chat) : this.addChat(chat);
+  }
+
+  updateChat(chat: Chat) {
+    console.log('updateChat');
     return this.http
-      .put<Chat>(
-        `${this.apiUrl}/${chatToSave.id}`,
-        chatToSave,
-        this.httpOptions
-      )
+      .put<Chat>(`${this.apiUrl}/${chat.id}`, chat, this.httpOptions)
       .pipe(
-        map((chat) => {
-          console.log(chat);
+        map((chat: Chat) => {
+          const updatedChats = this._chats$.value.filter((c) =>
+            c.id === chat.id ? chat : c
+          );
 
-          // this._chats$.next(chat);
+          this._chats$.next(updatedChats);
         })
       )
       .subscribe();
+  }
+
+  public addChat(chat: Chat) {
+    return this.http
+      .post<Chat>(`${this.apiUrl}`, chat, this.httpOptions)
+      .pipe(
+        map((chat: Chat) => {
+          chat = this.parseChat(chat);
+          const updatedChats = [chat, ...this._chats$.value];
+          this._chats$.next(updatedChats);
+        })
+      )
+      .subscribe();
+  }
+
+  getNewChat(userId: number, userId2: number) {
+    return {
+      userId,
+      userId2,
+      createdAt: new Date().getTime(),
+      reactions: [],
+      messages: [],
+      replies: [],
+    };
   }
 
   getNewMessage(currUserId: number, messageText: string) {

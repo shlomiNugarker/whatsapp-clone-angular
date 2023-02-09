@@ -70,23 +70,38 @@ export class MainPageComponent implements OnInit, OnDestroy {
     return chatWithContactIdx;
   }
 
-  onSelectContact(contactId: number) {
+  async onSelectContact(contactId: number) {
     const chatInChatsListIdx = this.getChatFromChatsList(contactId);
     console.log(this.chats, chatInChatsListIdx);
 
-    if (this.chats && chatInChatsListIdx) {
-      this.selectedChat = this.chats[chatInChatsListIdx];
+    if (chatInChatsListIdx === -1) {
+      if (!this.currentUser?.id) return;
+
+      const newChat = this.chatService.getNewChat(
+        this.currentUser.id,
+        contactId
+      );
+
+      await this.getOtherUser(newChat as unknown as Chat);
+      this.selectedChat = newChat as unknown as Chat;
       return;
     }
-    console.log('chat not found, create one! (todo)');
+
+    if (
+      chatInChatsListIdx !== -1 &&
+      typeof chatInChatsListIdx === 'number' &&
+      this.chats
+    ) {
+      this.selectedChat = this.chats[chatInChatsListIdx];
+      this.getOtherUser(this.selectedChat);
+    }
+    return;
   }
 
-  async getOtherUser() {
+  async getOtherUser(chat: Chat) {
     let userIdToGet: number | undefined;
     userIdToGet =
-      this.selectedChat?.userId === this.currentUser?.id
-        ? this.selectedChat?.userId2
-        : this.selectedChat?.userId;
+      chat.userId === this.currentUser?.id ? chat.userId2 : chat.userId;
 
     if (userIdToGet)
       this.otherUser = await this.userService.getUserById(userIdToGet);
@@ -97,7 +112,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
     const chatIdx = this.chats.findIndex((chat) => chat.id === chatId);
     this.selectedChat = this.chats[chatIdx];
 
-    this.getOtherUser();
+    this.getOtherUser(this.selectedChat);
   }
 
   getContacts() {
