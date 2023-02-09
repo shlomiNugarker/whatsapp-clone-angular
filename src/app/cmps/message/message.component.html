@@ -35,7 +35,7 @@
         <!-- The message -->
         <p>{{ message.text }}</p>
         <div class="time">
-          <small>{{ message.createdAt }}</small>
+          <small>{{ message.createdAt | date: 'h:mm a'}}</small>
         </div>
       </div>
     </div>

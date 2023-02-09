@@ -37,9 +37,6 @@ export class ChatPreviewComponent implements OnInit, OnDestroy {
     this.userSubScription = this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });
-
-    console.log(this.chat);
-
     if (this.chat) this.getOtherUser(this.chat);
   }
 

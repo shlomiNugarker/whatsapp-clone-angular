@@ -77,7 +77,6 @@ export class ChatService {
   }
 
   updateChat(chat: Chat) {
-    console.log('updateChat');
     return this.http
       .put<Chat>(`${this.apiUrl}/${chat.id}`, chat, this.httpOptions)
       .pipe(

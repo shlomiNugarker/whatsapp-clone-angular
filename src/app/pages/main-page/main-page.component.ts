@@ -72,7 +72,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   async onSelectContact(contactId: number) {
     const chatInChatsListIdx = this.getChatFromChatsList(contactId);
-    console.log(this.chats, chatInChatsListIdx);
 
     if (chatInChatsListIdx === -1) {
       if (!this.currentUser?.id) return;

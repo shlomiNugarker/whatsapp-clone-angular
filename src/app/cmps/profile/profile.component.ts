@@ -44,7 +44,6 @@ export class ProfileComponent implements OnInit {
     } as User;
 
     const savedUser = await this.userService.updateUser(userToUpdate);
-    console.log(savedUser);
   }
 
   goBack() {

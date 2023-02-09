@@ -26,7 +26,6 @@ export class UserService {
   public query(): Observable<any> {
     const url = `${this.apiUrl}`;
     return this.http.get<any>(url, this.httpOptions).pipe(
-      tap((_) => console.log('fetched users: ')),
       map((users) => {
         this._users$.next(users);
       }),
@@ -38,11 +37,9 @@ export class UserService {
     const url = `${this.apiUrl}/userId/${userId}`;
     try {
       if (this.cashingUsers[userId]) return this.cashingUsers[userId];
-
       const user = await lastValueFrom(
         this.http.get<any>(url, this.httpOptions)
       );
-
       this.cashingUsers[userId] = user;
 
       return user;

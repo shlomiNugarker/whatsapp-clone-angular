@@ -40,6 +40,7 @@
 
   <!-- List: -->
   <div class="list">
+    <p class="no-chats-msg" *ngIf="!chats?.length" >No chats yet...</p>
     <app-chat-preview   
      *ngFor="let chat of chats"
      [chat]="chat"

@@ -2,7 +2,7 @@
 <div class="details-preview">
   <div class="name-and-date">
     <h3 class="full-name">{{ otherUser?.fullname }}</h3>
-    <small>{{ lastDate() }}</small>
+    <small>{{ lastDate() | date : "M/d/yy" }}</small>
   </div>
   <p>{{ lastMessage() }}</p>
 </div>
