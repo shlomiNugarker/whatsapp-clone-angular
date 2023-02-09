@@ -14,8 +14,7 @@
         <app-status-logo />
       </span>
 
-      <span class="new-chat" (click)="showNewChat()"
-        >
+      <span class="new-chat" (click)="showNewChat()">
         <app-new-chat-logo />
       </span>
 
@@ -41,25 +40,13 @@
 
   <!-- List: -->
   <div class="list">
-    <!-- Chat Preview: -->
-    <div
-      *ngFor="let chat of chats"
-      class="chat-preview"
-      [ngClass]="selectedChatId === chat.id ? 'selected' : ''"
-      (click)="selectChat(chat.id)"
-    >
-      <img
-        class="img"
-        src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
-        alt=""
-      />
-      <div class="details-preview">
-        <div class="name-and-date">
-          <h3 class="full-name">Doctor code</h3>
-          <small>11.02</small>
-        </div>
-        <p>{{ chat.messages[chat.messages.length - 1].text }}</p>
-      </div>
-    </div>
+    <app-chat-preview   
+     *ngFor="let chat of chats"
+     [chat]="chat"
+     class="chat-preview"
+     [ngClass]="selectedChatId === chat.id ? 'selected' : ''"
+     (click)="selectChat(chat.id)" 
+     [chats]="chats"
+    />
   </div>
 </section>

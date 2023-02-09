@@ -123,36 +123,6 @@
       justify-content: center;
       align-items: center;
       cursor: pointer;
-
-      .img {
-        border-radius: 50%;
-        width: 50px;
-        height: 50px;
-        object-fit: cover;
-        padding: 0 15px 0 13px;
-      }
-
-      .details-preview {
-        width: 100%;
-        padding-right: 13px;
-        .name-and-date {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          justify-content: space-between;
-
-          .full-name {
-            color: #111b21;
-          }
-          small {
-            color: #667781;
-          }
-        }
-        p {
-          color: #667781;
-        }
-      }
     }
   }
 }

@@ -42,6 +42,7 @@ import { DeleteLogoComponent } from './cmps/svgs/delete-logo/delete-logo.compone
 import { XLogoComponent } from './cmps/svgs/x-logo/x-logo.component';
 import { AchchhAppLogoComponent } from './cmps/svgs/achchh-app-logo/achchh-app-logo.component';
 import { LockLogoComponent } from './cmps/svgs/lock-logo/lock-logo.component';
+import { ChatPreviewComponent } from './cmps/chat-preview/chat-preview.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { LockLogoComponent } from './cmps/svgs/lock-logo/lock-logo.component';
     XLogoComponent,
     AchchhAppLogoComponent,
     LockLogoComponent,
+    ChatPreviewComponent,
   ],
   imports: [
     BrowserModule,
