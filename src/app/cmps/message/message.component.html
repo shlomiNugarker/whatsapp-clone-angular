@@ -9,12 +9,10 @@
       </div>
     </div>
     <div class="btns">
-      <!-- Search logo: -->
       <span class="search-icon" (click)="showSearchMessage()">
         <app-search-logo></app-search-logo>
       </span>
 
-      <!-- Menu logo: -->
       <span class="menu">
         <app-menu-logo />
       </span>
@@ -31,7 +29,6 @@
     >
       <div class="msg">
         <span class="x">
-          <!-- svg: -->
           <app-edge-green-msg-logo />
         </span>
 
@@ -48,12 +45,12 @@
   <section class="input-message">
     <div class="container">
       <div class="icons">
-        <!-- Emoji -->
+
         <span class="emojis"
           >
           <app-emoji-logo />
         </span>
-        <!-- Attach file: -->
+
         <span class="attach"
           >
           <app-attach-logo />
@@ -68,12 +65,10 @@
         (keyup.enter)="onSend()"
       />
 
-      <!-- Voice message: -->
       <span *ngIf="!textMsg" class="voice-message">
         <app-voice-logo />
   
       </span>
-      <!-- Send: -->
       <span class="send-logo" *ngIf="textMsg" (click)="onSend()">
         <app-send-logo />
       </span>

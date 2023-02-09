@@ -6,23 +6,19 @@
     </div>
     <!-- Nav: -->
     <div class="nav">
-      <!-- Community logo: -->
       <span class="community" (click)="showCommunities()">
         <app-community-logo />
       </span>
 
-      <!-- Status logo: -->
       <span class="status">
         <app-status-logo />
       </span>
 
-      <!-- New chat logo: -->
       <span class="new-chat" (click)="showNewChat()"
         >
         <app-new-chat-logo />
       </span>
 
-      <!-- Menu logo: -->
       <span class="menu">
         <app-menu-logo />
       </span>
@@ -32,14 +28,12 @@
   <!-- Search: -->
   <div class="search-container">
     <div class="search">
-      <!-- Search icon: -->
       <span class="search-icon icon">
         <app-search-logo />
       </span>
       <!-- Input: -->
       <input type="text" placeholder="Search or start new chat" />
     </div>
-    <!-- Unread-chat-filter icon: -->
     <span class="icon unread-chat-filter">
       <app-filter-logo />
     </span>
@@ -65,7 +59,6 @@
           <small>11.02</small>
         </div>
         <p>{{ chat.messages[chat.messages.length - 1].text }}</p>
-        <!-- <p>Last message</p> -->
       </div>
     </div>
   </div>

@@ -2,7 +2,6 @@
   <header class="header">
     <div class="container">
       <div class="back">
-        <!-- SVG logo, back -->
         <span (click)="goBack()">
           <app-back-logo />
         </span>
@@ -29,24 +28,19 @@
       </p>
 
       <!-- Edit name: -->
-
       <div class="edit" *ngIf="isEditName">
         <input type="text" [(ngModel)]="fullnameToEdit" />
-        <!-- Emoji svg: -->
         <span class="emojis"
           >
           <app-emoji-logo />
       </span>
 
-        <!-- Check mark svg: -->
         <span class="checkmark" (click)="saveUser()">
           <app-check-mark-logo />
       </span>
       </div>
 
-      <!-- Edit button -->
-      <span *ngIf="!isEditName" (click)="editName()"
-        >
+      <span *ngIf="!isEditName" (click)="editName()">
         <app-edit-logo />
     </span>
     </div>
@@ -55,8 +49,7 @@
   <div class="pushname-description">
     <span
       >This is not your username or pin. This name will be visible to your
-      AchchhApp contacts.</span
-    >
+      AchchhApp contacts.</span>
   </div>
 
   <!-- About: -->
@@ -68,21 +61,17 @@
       <!-- Edit about: -->
       <div class="edit" *ngIf="isEditAbout">
         <input type="text" [(ngModel)]="aboutToEdit" />
-        <!-- Emoji svg: -->
-        <span class="emojis"
-          >
+        <span class="emojis">
           <app-emoji-logo />
       </span>
 
-        <!-- Check mark svg: -->
         <span class="checkmark" (click)="saveUser()">
           <app-check-mark-logo />
       </span>
       </div>
 
-      <!-- Edit button -->
-      <span *ngIf="!isEditAbout" (click)="editAbout()"
-        >
+
+      <span *ngIf="!isEditAbout" (click)="editAbout()">
         <app-edit-logo />
     </span>
     </div>
