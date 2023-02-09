@@ -1,12 +1,8 @@
-<img
-  class="img"
-  src="https://res.cloudinary.com/duajg3ah1/image/upload/v1660763357/shlomiN_mewit4.jpg"
-  alt=""
-/>
+<img class="img" [src]="otherUser?.imgUrl" alt="" />
 <div class="details-preview">
   <div class="name-and-date">
-    <h3 class="full-name">Doctor code</h3>
-    <small>11.02</small>
+    <h3 class="full-name">{{ otherUser?.fullname }}</h3>
+    <small>{{ lastDate() }}</small>
   </div>
   <p>{{ lastMessage() }}</p>
 </div>
