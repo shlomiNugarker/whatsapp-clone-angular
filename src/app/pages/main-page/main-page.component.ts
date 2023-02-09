@@ -51,6 +51,36 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.userSubScription) this.userSubScription.unsubscribe();
   }
 
+  sendMessage(messageText: string) {
+    if (!this.selectedChat || !this.currentUser?.id || !this.otherUser?.id)
+      return;
+
+    this.chatService.sendMessage(
+      this.selectedChat,
+      this.currentUser?.id,
+      messageText
+    );
+  }
+
+  getChatFromChatsList(contactId: number) {
+    const chatWithContactIdx = this.chats?.findIndex(
+      (chat) => chat.userId === contactId
+    );
+
+    return chatWithContactIdx;
+  }
+
+  onSelectContact(contactId: number) {
+    const chatInChatsListIdx = this.getChatFromChatsList(contactId);
+    console.log(this.chats, chatInChatsListIdx);
+
+    if (this.chats && chatInChatsListIdx) {
+      this.selectedChat = this.chats[chatInChatsListIdx];
+      return;
+    }
+    console.log('chat not found, create one! (todo)');
+  }
+
   async getOtherUser() {
     let userIdToGet: number | undefined;
     userIdToGet =
@@ -79,24 +109,5 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   onShowModal(name: string) {
     this.modalNameToShow = name;
-  }
-
-  onSelectContact(contactId: number) {
-    const chatInChatsListIdx = this.getChatFromChatsList(contactId);
-    if (chatInChatsListIdx && this.chats) {
-      this.selectedChat = this.chats[chatInChatsListIdx];
-      return;
-    } else {
-      console.log('chat no found, create one! (todo)');
-    }
-  }
-
-  getChatFromChatsList(contactId: number) {
-    const chatWithContactIdx = this.chats?.findIndex(
-      (chat) => chat.userId === contactId
-    );
-    console.log({ chatWithContactIdx });
-
-    return chatWithContactIdx;
   }
 }

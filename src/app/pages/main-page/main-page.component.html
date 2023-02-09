@@ -17,6 +17,7 @@
     <app-message
      *ngIf="selectedChat" 
      (selectModal)="onShowModal($event)" 
+     (onSendMessage)="sendMessage($event)" 
      [messages]="selectedChat.messages" 
      [otherUser]="otherUser" 
      [selectedChat]="selectedChat" 
