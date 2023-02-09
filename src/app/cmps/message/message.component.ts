@@ -28,6 +28,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   currentUser: User | null = null;
   userSubscription: Subscription | undefined;
   textMsg: string = '';
+  infoText: string = 'Click here for contact info';
 
   constructor(private authService: AuthService) {}
 
@@ -35,6 +36,8 @@ export class MessageComponent implements OnInit, OnDestroy {
     this.userSubscription = this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });
+
+    setTimeout(() => (this.infoText = this.otherUser?.email || ''), 3000);
   }
 
   ngOnDestroy(): void {

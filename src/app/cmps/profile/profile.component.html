@@ -29,9 +29,13 @@
 
       <!-- Edit name: -->
       <div class="edit" *ngIf="isEditName">
-        <input type="text" [(ngModel)]="fullnameToEdit" />
-        <span class="emojis"
-          >
+        <input
+         type="text"
+         autofocus 
+         [(ngModel)]="fullnameToEdit" 
+         (focusout)="isEditName= false"
+        />
+        <span class="emojis">
           <app-emoji-logo />
       </span>
 
@@ -60,7 +64,12 @@
 
       <!-- Edit about: -->
       <div class="edit" *ngIf="isEditAbout">
-        <input type="text" [(ngModel)]="aboutToEdit" />
+        <input 
+         autofocus 
+         type="text" 
+         [(ngModel)]="aboutToEdit" 
+         (focusout)="isEditAbout= false"
+        />
         <span class="emojis">
           <app-emoji-logo />
       </span>
