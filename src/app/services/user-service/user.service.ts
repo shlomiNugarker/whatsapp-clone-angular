@@ -63,6 +63,10 @@ export class UserService {
     );
     return this.authService.updateCurrentUser(savedUser);
   }
+  async updateImageProfile(url: string) {
+    const currentUser = this.authService.getCurrentUser();
+    if (currentUser) await this.updateUser({ ...currentUser, imgUrl: url });
+  }
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

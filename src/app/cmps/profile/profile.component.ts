@@ -45,10 +45,16 @@ export class ProfileComponent implements OnInit {
     this.isEditAbout = true;
   }
 
-  onUploadImage(ev: any) {
-    console.log({ ev });
-
-    // this.imgUploadService.uploadImg(ev);
+  async onUploadImage(ev: Event) {
+    try {
+      // set loading
+      const url = await this.imgUploadService.uploadImg(ev);
+      await this.userService.updateImageProfile(url);
+    } catch (err) {
+      console.log(err);
+    } finally {
+      // set loading
+    }
   }
 
   async saveUser() {

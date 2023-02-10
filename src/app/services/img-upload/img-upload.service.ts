@@ -23,7 +23,7 @@ export class ImgUploadService {
         body: FORM_DATA,
       });
       const res_1 = await res.json();
-      return res_1;
+      return res_1.url;
     } catch (err) {
       console.error(err);
     }
