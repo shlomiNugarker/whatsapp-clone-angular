@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
+import { ImgUploadService } from 'src/app/services/img-upload/img-upload.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -13,17 +14,28 @@ export class ProfileComponent implements OnInit {
   @Input() currentUser: User | null | undefined;
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private imgUploadService: ImgUploadService
+  ) {}
 
   isEditName = false;
   isEditAbout = false;
   userSubScription: Subscription | undefined;
   fullnameToEdit: string = '';
   aboutToEdit: string = '';
+  isShownUploading: boolean = false;
 
   ngOnInit(): void {
     this.fullnameToEdit = this.currentUser?.fullname || '';
     this.aboutToEdit = this.currentUser?.about || '';
+  }
+
+  mouseEntered() {
+    this.isShownUploading = true;
+  }
+  mouseLeaved() {
+    this.isShownUploading = false;
   }
 
   editName() {
@@ -31,6 +43,12 @@ export class ProfileComponent implements OnInit {
   }
   editAbout() {
     this.isEditAbout = true;
+  }
+
+  onUploadImage(ev: any) {
+    console.log({ ev });
+
+    // this.imgUploadService.uploadImg(ev);
   }
 
   async saveUser() {
