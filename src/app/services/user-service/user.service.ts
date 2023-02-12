@@ -11,6 +11,8 @@ import { AuthService } from '../auth-service/auth.service';
 })
 export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
+
+  // readonly apiUrl = '/api/user';
   readonly apiUrl = 'http://localhost:3030/api/user';
 
   httpOptions = {

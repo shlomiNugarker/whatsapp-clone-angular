@@ -8,7 +8,7 @@
   }
 
   .details-preview {
-    width: 100%;
+    width: calc(100% - 100px);
     padding-right: 13px;
     .name-and-date {
       display: flex;

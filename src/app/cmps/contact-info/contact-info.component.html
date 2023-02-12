@@ -9,7 +9,7 @@
 
   <div class="container">
     <!-- Image: -->
-    <div class="img-container">
+    <div class="img-container" (click)="selectImagePreview()">
       <div>
         <img [src]="otherUser?.imgUrl" alt="" />
       </div>
@@ -21,7 +21,7 @@
 
     <div class="about">
       <p>About</p>
-      <span>m{{ otherUser?.about }}</span>
+      <span>{{ otherUser?.about }}</span>
     </div>
 
     <div class="media-link-docs">

@@ -14,6 +14,7 @@ export class AuthService {
   );
   public currentUser$ = this._currentUser$.asObservable();
 
+  // readonly apiUrl = '/api/auth';
   readonly apiUrl = 'http://localhost:3030/api/auth';
 
   httpOptions = {
@@ -38,8 +39,6 @@ export class AuthService {
           const { user, accessToken } = userWithToken;
 
           if (user && accessToken) {
-            // localStorage.setItem('currentUser', JSON.stringify(user));
-            // this._currentUser$.next(user);
             localStorage.setItem('accessToken', JSON.stringify(accessToken));
             this.updateCurrentUser(user);
             return user;

@@ -57,7 +57,15 @@
     <app-contact-info 
      *ngIf="modalNameToShow === 'contact-info'" 
      (selectModal)="onShowModal($event)" 
+     (selectImage)="onSelectImagePreview($event)" 
      [otherUser]="otherUser"  
+    />
+
+    <app-image-preview  
+      *ngIf="modalNameToShow === 'image-preview'"
+      (selectModal)="onShowModal($event)"  
+      [otherUser]="otherUser" 
+      [otherUser]="otherUser"
     />
 
     <!-- <app-status *ngIf="modalNameToShow === 'status'" /> -->

@@ -1,0 +1,11 @@
+<header>
+  <div>
+    <img [src]="otherUser?.imgUrl" alt="" />
+    <p class="fullname">{{otherUser?.fullname}}</p>
+  </div>
+  <span (click)="goBack()"><app-x-logo /></span>
+</header>
+
+<div class="img-container">
+  <img class="img" [src]="otherUser?.imgUrl" alt="" />
+</div>

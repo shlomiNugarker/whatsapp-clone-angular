@@ -20,7 +20,9 @@ export class ChatService {
 
   currentUser: User | null = null;
 
+  // readonly apiUrl = '/api/chat';
   readonly apiUrl = 'http://localhost:3030/api/chat';
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true,

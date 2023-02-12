@@ -29,7 +29,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   selectedChat: Chat | null = null;
   otherUser: User | null = null;
 
-  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status
+  modalNameToShow: string = ''; // 'new-chat', 'profile', 'search-message', 'contact-info', 'communities', 'status, 'image-preview'
 
   ngOnInit(): void {
     this.chatService.query().subscribe();
@@ -49,6 +49,14 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.messageSubscription) this.messageSubscription.unsubscribe();
     if (this.contactsSubscription) this.contactsSubscription.unsubscribe();
     if (this.userSubScription) this.userSubScription.unsubscribe();
+  }
+
+  onSelectImagePreview(url: string) {
+    console.log(url);
+  }
+
+  showImagePreview(url: string) {
+    console.log(url);
   }
 
   sendMessage(messageText: string) {
