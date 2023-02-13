@@ -125,7 +125,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   getContacts() {
     this.userService.query().subscribe();
     this.contactsSubscription = this.userService.users$.subscribe((users) => {
-      this.contacts = users;
+      this.contacts = users.filter((user) => user.id !== this.currentUser?.id);
     });
   }
 

@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
+
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
+
 // cmps:
 import { AppComponent } from './cmps/app-root/app.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
@@ -92,6 +95,7 @@ import { ImagePreviewComponent } from './cmps/image-preview/image-preview.compon
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    PickerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

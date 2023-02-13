@@ -40,14 +40,15 @@
       </div>
     </div>
   </div>
+  
+  <emoji-mart *ngIf="isEmojiShown" (emojiClick)="addEmoji($event)" title="Pick your emoji…" emoji="point_up" ></emoji-mart>
 
   <!-- Input Message: -->
   <section class="input-message">
     <div class="container">
       <div class="icons">
 
-        <span class="emojis"
-          >
+        <span class="emojis" (click)="showEmoji()">
           <app-emoji-logo />
         </span>
 
@@ -58,11 +59,13 @@
       </div>
       <!-- Input: -->
       <input
+        #input
         class="input"
         type="text"
         placeholder="Type a message"
         [(ngModel)]="textMsg"
         (keyup.enter)="onSend()"
+        (focusout)="focusOut()"
       />
 
       <span *ngIf="!textMsg" class="voice-message">
@@ -74,4 +77,6 @@
       </span>
     </div>
   </section>
+
+
 </section>

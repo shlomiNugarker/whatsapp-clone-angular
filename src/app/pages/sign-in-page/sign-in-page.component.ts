@@ -16,8 +16,8 @@ export class SignInPageComponent {
     private router: Router
   ) {
     this.form = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
+      email: ['shlomin1231@gmail.com', Validators.required],
+      password: ['123456', Validators.required],
     });
   }
   login() {

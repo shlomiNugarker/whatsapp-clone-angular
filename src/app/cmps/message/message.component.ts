@@ -29,6 +29,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   userSubscription: Subscription | undefined;
   textMsg: string = '';
   infoText: string = 'Click here for contact info';
+  isEmojiShown: boolean = false;
 
   constructor(private authService: AuthService) {}
 
@@ -38,6 +39,18 @@ export class MessageComponent implements OnInit, OnDestroy {
     });
 
     setTimeout(() => (this.infoText = this.otherUser?.email || ''), 3000);
+  }
+
+  addEmoji(ev: any) {
+    console.log(ev.emoji);
+    this.textMsg += ev.emoji.native;
+  }
+  focusOut() {
+    console.log('focusOut');
+  }
+
+  showEmoji() {
+    this.isEmojiShown = !this.isEmojiShown;
   }
 
   ngOnDestroy(): void {
