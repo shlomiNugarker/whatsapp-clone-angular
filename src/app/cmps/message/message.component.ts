@@ -42,7 +42,7 @@ export class MessageComponent implements OnInit, OnDestroy {
   }
 
   addEmoji(ev: any) {
-    console.log(ev.emoji);
+    // console.log(ev.emoji);
     this.textMsg += ev.emoji.native;
   }
   focusOut() {
