@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Chat } from 'src/app/models/chat';
-import { Message } from 'src/app/models/message';
 import { User } from 'src/app/models/user';
 import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { ChatService } from 'src/app/services/chat-service/chat.service';
@@ -35,6 +34,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
     this.chatService.query().subscribe();
     this.chatSubscription = this.chatService.chats$.subscribe((chats) => {
       this.chats = chats;
+      if (this.selectedChat) {
+        this.onSelectChat(this.selectedChat);
+      }
     });
 
     this.userSubScription = this.authService.currentUser$.subscribe((user) => {
@@ -51,14 +53,6 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.userSubScription) this.userSubScription.unsubscribe();
   }
 
-  onSelectImagePreview(url: string) {
-    console.log(url);
-  }
-
-  showImagePreview(url: string) {
-    console.log(url);
-  }
-
   sendMessage(messageText: string) {
     if (!this.selectedChat || !this.currentUser?.id || !this.otherUser?.id)
       return;
@@ -72,7 +66,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   getChatFromChatsList(contactId: number) {
     const chatWithContactIdx = this.chats?.findIndex(
-      (chat) => chat.userId === contactId
+      (chat) => chat.userId === contactId || chat.userId2 === contactId
     );
 
     return chatWithContactIdx;
@@ -91,6 +85,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
       await this.getOtherUser(newChat as unknown as Chat);
       this.selectedChat = newChat as unknown as Chat;
+      this.onShowModal('');
       return;
     }
 
@@ -101,24 +96,23 @@ export class MainPageComponent implements OnInit, OnDestroy {
     ) {
       this.selectedChat = this.chats[chatInChatsListIdx];
       this.getOtherUser(this.selectedChat);
+      this.onShowModal('');
     }
     return;
   }
 
-  async getOtherUser(chat: Chat) {
+  async getOtherUser(chat: Chat | null) {
     let userIdToGet: number | undefined;
     userIdToGet =
-      chat.userId === this.currentUser?.id ? chat.userId2 : chat.userId;
+      chat?.userId === this.currentUser?.id ? chat?.userId2 : chat?.userId;
 
     if (userIdToGet)
       this.otherUser = await this.userService.getUserById(userIdToGet);
   }
 
-  onSelectChat(chatId: number) {
-    if (!this.chats) return;
-    const chatIdx = this.chats.findIndex((chat) => chat.id === chatId);
-    this.selectedChat = this.chats[chatIdx];
-
+  onSelectChat(chat: Chat) {
+    if (!this.chats?.length) return;
+    this.selectedChat = chat;
     this.getOtherUser(this.selectedChat);
   }
 

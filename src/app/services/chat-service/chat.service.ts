@@ -7,6 +7,7 @@ import { Chat } from 'src/app/models/chat';
 import { AuthService } from '../auth-service/auth.service';
 import { User } from 'src/app/models/user';
 import { UtilsService } from '../utils-service/utils.service';
+import { SocketService } from '../socket-service/socket.service';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +16,14 @@ export class ChatService {
   constructor(
     private http: HttpClient,
     private authService: AuthService,
-    private utilsService: UtilsService
+    private utilsService: UtilsService,
+    private socketService: SocketService
   ) {}
 
   currentUser: User | null = null;
 
-  // readonly apiUrl = '/api/chat';
-  readonly apiUrl = 'http://localhost:3030/api/chat';
+  readonly apiUrl = '/api/chat';
+  // readonly apiUrl = 'http://localhost:3030/api/chat';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -82,28 +84,55 @@ export class ChatService {
     return this.http
       .put<Chat>(`${this.apiUrl}/${chat.id}`, chat, this.httpOptions)
       .pipe(
-        map((chat: Chat) => {
-          const updatedChats = this._chats$.value.filter((c) =>
-            c.id === chat.id ? chat : c
-          );
+        tap((chat) => {
+          const emitTo =
+            chat.userId === this.currentUser?.id ? chat.userId2 : chat.userId;
 
-          this._chats$.next(updatedChats);
+          this.socketService.actions.emit('update-chat', { chat, emitTo });
+        }),
+        map((chat: Chat) => {
+          this.updateChatObservable(chat);
         })
       )
       .subscribe();
+  }
+
+  updateChatObservable(chat: Chat) {
+    chat = this.parseChat(chat);
+    const updatedChats = this._chats$.value.map((c) =>
+      c.id === chat.id ? chat : c
+    );
+    this._chats$.next(updatedChats);
   }
 
   public addChat(chat: Chat) {
     return this.http
       .post<Chat>(`${this.apiUrl}`, chat, this.httpOptions)
       .pipe(
+        tap((chat) => {
+          const emitTo =
+            chat.userId === this.currentUser?.id ? chat.userId2 : chat.userId;
+
+          this.socketService.actions.emit('add-chat', { chat, emitTo });
+        }),
         map((chat: Chat) => {
-          chat = this.parseChat(chat);
-          const updatedChats = [chat, ...this._chats$.value];
-          this._chats$.next(updatedChats);
+          this.addChatObservable(chat);
         })
       )
       .subscribe();
+  }
+
+  addChatObservable(chat: Chat) {
+    chat = this.parseChat(chat);
+    let updatedChats;
+
+    if (!this._chats$.value.length) {
+      updatedChats = [chat];
+    } else {
+      updatedChats = [chat, ...this._chats$.value];
+    }
+
+    this._chats$.next(updatedChats);
   }
 
   getNewChat(userId: number, userId2: number) {

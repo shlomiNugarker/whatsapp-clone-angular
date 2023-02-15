@@ -13,14 +13,14 @@ export class ChatListComponent implements OnInit {
   @Input() selectedChatId: number | undefined;
   @Input() currentUser: User | null | undefined;
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
-  @Output('selectChat') onSelect = new EventEmitter<number>();
+  @Output('selectChat') onSelect = new EventEmitter<Chat>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
-  selectChat(chatId: number) {
-    this.onSelect.emit(chatId);
+  selectChat(chat: Chat) {
+    this.onSelect.emit(chat);
   }
 
   showProfile() {

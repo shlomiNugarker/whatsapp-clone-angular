@@ -8,7 +8,6 @@ import { User } from 'src/app/models/user';
 })
 export class ContactInfoComponent {
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
-  @Output('selectImage') onSelectImagePreview = new EventEmitter<string>();
   @Input() otherUser: User | null = null; // the user you are chatting,depends on selectedChat
 
   goBack() {
@@ -17,6 +16,5 @@ export class ContactInfoComponent {
 
   selectImagePreview() {
     this.onSelectModal.emit('image-preview');
-    this.onSelectImagePreview.emit();
   }
 }

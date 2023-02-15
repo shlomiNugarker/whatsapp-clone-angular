@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { BehaviorSubject, Observable, of, lastValueFrom } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { User } from 'src/app/models/user';
+import { SocketService } from '../socket-service/socket.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,15 +15,15 @@ export class AuthService {
   );
   public currentUser$ = this._currentUser$.asObservable();
 
-  // readonly apiUrl = '/api/auth';
-  readonly apiUrl = 'http://localhost:3030/api/auth';
+  readonly apiUrl = '/api/auth';
+  // readonly apiUrl = 'http://localhost:3030/api/auth';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
     withCredentials: true,
   };
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private socketService: SocketService) {}
 
   login(email: string, password: string) {
     return this.http
@@ -37,10 +38,10 @@ export class AuthService {
       .pipe(
         map((userWithToken) => {
           const { user, accessToken } = userWithToken;
-
           if (user && accessToken) {
             localStorage.setItem('accessToken', JSON.stringify(accessToken));
             this.updateCurrentUser(user);
+            this.socketService.actions.emit('login', user);
             return user;
           }
         })
@@ -95,6 +96,8 @@ export class AuthService {
     const currentUser: User | null = userFromStorage
       ? JSON.parse(userFromStorage)
       : null;
+
+    currentUser && this.socketService.actions.emit('login', currentUser);
     return currentUser;
   }
 

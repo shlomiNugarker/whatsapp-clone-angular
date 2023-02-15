@@ -12,8 +12,8 @@ import { AuthService } from '../auth-service/auth.service';
 export class UserService {
   constructor(private http: HttpClient, private authService: AuthService) {}
 
-  // readonly apiUrl = '/api/user';
-  readonly apiUrl = 'http://localhost:3030/api/user';
+  readonly apiUrl = '/api/user';
+  // readonly apiUrl = 'http://localhost:3030/api/user';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -31,7 +31,7 @@ export class UserService {
       map((users) => {
         this._users$.next(users);
       }),
-      catchError(this.handleError<any[]>('getUserById', []))
+      catchError(this.handleError<any[]>('getUsers', []))
     );
   }
 

@@ -6,10 +6,13 @@ import io, { Socket } from 'socket.io-client';
   providedIn: 'root',
 })
 export class SocketService {
-  constructor() {}
+  constructor() {
+    this.actions.setup();
+  }
 
   socket: Socket<DefaultEventsMap, DefaultEventsMap> | null = null;
-  baseUrl: string = '//localhost:3030';
+  // baseUrl: string = '//localhost:3030';
+  baseUrl: string = '';
 
   createSocketService = () => {
     const socketService = {
