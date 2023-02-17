@@ -23,6 +23,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   contactsSubscription: Subscription | undefined;
   userSubScription: Subscription | undefined;
   selectedChatSubScription: Subscription | undefined;
+  otherUserSubScription: Subscription | undefined;
   chats: Chat[] | undefined;
   contacts: User[] = [];
   currentUser: User | null = null;
@@ -33,6 +34,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.chatService.query().subscribe();
+
+    // chats observable:
     this.chatSubscription = this.chatService.chats$.subscribe((chats) => {
       this.chats = chats;
       if (this.selectedChat) {
@@ -40,13 +43,24 @@ export class MainPageComponent implements OnInit, OnDestroy {
       }
     });
 
+    // current-user observable:
     this.userSubScription = this.authService.currentUser$.subscribe((user) => {
       this.currentUser = user;
     });
 
+    // other-user observable:
+    this.otherUserSubScription = this.userService.otherUser$.subscribe(
+      (otherUser) => {
+        this.otherUser = otherUser;
+      }
+    );
+
+    // selected-chat observable:
     this.selectedChatSubScription = this.chatService.selectedChat$.subscribe(
       (chat) => {
         this.selectedChat = chat;
+        const listEl = document.querySelector('.list-messages');
+        listEl?.scrollTo(0, listEl.scrollHeight);
       }
     );
 
@@ -94,9 +108,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
       await this.getOtherUser(newChat as unknown as Chat);
 
-      // this.selectedChat = newChat as unknown as Chat;
       this.chatService.setSelectChat(newChat as unknown as Chat);
       this.onShowModal('');
+
       return;
     }
 
@@ -117,8 +131,10 @@ export class MainPageComponent implements OnInit, OnDestroy {
     userIdToGet =
       chat?.userId === this.currentUser?.id ? chat?.userId2 : chat?.userId;
 
-    if (userIdToGet)
-      this.otherUser = await this.userService.getUserById(userIdToGet);
+    if (userIdToGet) {
+      const otherUser = await this.userService.getUserById(userIdToGet);
+      this.userService.setOtherUser(otherUser);
+    }
   }
 
   onSelectChat(chat: Chat) {

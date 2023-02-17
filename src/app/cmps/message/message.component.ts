@@ -38,7 +38,12 @@ export class MessageComponent implements OnInit, OnDestroy {
       this.currentUser = user;
     });
 
-    setTimeout(() => (this.infoText = this.otherUser?.email || ''), 3000);
+    setTimeout(() => {
+      const listEl = document.querySelector('.list-messages');
+      listEl?.scrollTo(0, listEl.scrollHeight);
+    }, 30);
+
+    // setTimeout(() => (this.infoText = this.otherUser?.email || ''), 3000);
   }
 
   addEmoji(ev: any) {
@@ -60,11 +65,17 @@ export class MessageComponent implements OnInit, OnDestroy {
   showSearchMessage() {
     this.onSelectModal.emit('search-message');
   }
+
   showContactInfo(contactId: number | undefined) {
     this.onSelectModal.emit('contact-info');
   }
   onSend() {
     this.onSendMsg.emit(this.textMsg);
     this.textMsg = '';
+
+    // setTimeout(() => {
+    //   const listEl = document.querySelector('.list-messages');
+    //   listEl?.scrollTo(0, listEl.scrollHeight);
+    // }, 30);
   }
 }

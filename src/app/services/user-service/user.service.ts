@@ -25,6 +25,9 @@ export class UserService {
   private _users$ = new BehaviorSubject<User[]>([]);
   public users$ = this._users$.asObservable();
 
+  private _otherUser$ = new BehaviorSubject<User | null>(null);
+  public otherUser$ = this._otherUser$.asObservable();
+
   public query(): Observable<any> {
     const url = `${this.apiUrl}`;
     return this.http.get<any>(url, this.httpOptions).pipe(
@@ -75,5 +78,9 @@ export class UserService {
       console.error(error);
       return of(result as T);
     };
+  }
+
+  setOtherUser(user: User) {
+    this._otherUser$.next(user);
   }
 }

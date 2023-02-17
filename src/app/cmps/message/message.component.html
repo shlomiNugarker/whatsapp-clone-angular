@@ -5,7 +5,8 @@
       <img [src]="otherUser?.imgUrl" alt="" />
       <div class="message-details">
         <h2>{{ otherUser?.fullname }}</h2>
-        <p>{{infoText}}</p>
+        <p>{{otherUser?.email}}</p>
+        <!-- <p>{{infoText}}</p> -->
       </div>
     </div>
     <div class="btns">
@@ -20,7 +21,7 @@
   </header>
 
   <!-- Messages List: -->
-  <div class="list">
+  <div class="list list-messages">
     <!-- Message Preview -->
     <div
       *ngFor="let message of messages"
