@@ -11,8 +11,8 @@ export class SocketService {
   }
 
   socket: Socket<DefaultEventsMap, DefaultEventsMap> | null = null;
-  // baseUrl: string = '//localhost:3030';
-  baseUrl: string = '';
+  baseUrl: string = '//localhost:3030';
+  // baseUrl: string = '';
 
   createSocketService = () => {
     const socketService = {

@@ -22,8 +22,8 @@ export class ChatService {
 
   currentUser: User | null = null;
 
-  readonly apiUrl = '/api/chat';
-  // readonly apiUrl = 'http://localhost:3030/api/chat';
+  // readonly apiUrl = '/api/chat';
+  readonly apiUrl = 'http://localhost:3030/api/chat';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
@@ -32,6 +32,9 @@ export class ChatService {
 
   private _chats$ = new BehaviorSubject<Chat[]>([]);
   public chats$ = this._chats$.asObservable();
+
+  private _selectedChat$ = new BehaviorSubject<Chat | null>(null);
+  public selectedChat$ = this._selectedChat$.asObservable();
 
   public query() {
     this.authService.currentUser$.subscribe((user) => {
@@ -48,6 +51,10 @@ export class ChatService {
         this._chats$.next(chats);
       })
     );
+  }
+
+  setSelectChat(chat: Chat | null) {
+    this._selectedChat$.next(chat);
   }
 
   parseChat(chat: Chat) {
@@ -89,10 +96,9 @@ export class ChatService {
             chat.userId === this.currentUser?.id ? chat.userId2 : chat.userId;
 
           this.socketService.actions.emit('update-chat', { chat, emitTo });
-        }),
-        map((chat: Chat) => {
           this.updateChatObservable(chat);
-        })
+        }),
+        map((chat: Chat) => {})
       )
       .subscribe();
   }
@@ -103,6 +109,11 @@ export class ChatService {
       c.id === chat.id ? chat : c
     );
     this._chats$.next(updatedChats);
+
+    if (chat.id === this._selectedChat$.value?.id) {
+      const chatIdx = this._chats$.value.findIndex((c) => c.id === chat.id);
+      this._selectedChat$.next(this._chats$.value[chatIdx]);
+    }
   }
 
   public addChat(chat: Chat) {

@@ -22,6 +22,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
   messageSubscription: Subscription | undefined;
   contactsSubscription: Subscription | undefined;
   userSubScription: Subscription | undefined;
+  selectedChatSubScription: Subscription | undefined;
   chats: Chat[] | undefined;
   contacts: User[] = [];
   currentUser: User | null = null;
@@ -43,6 +44,12 @@ export class MainPageComponent implements OnInit, OnDestroy {
       this.currentUser = user;
     });
 
+    this.selectedChatSubScription = this.chatService.selectedChat$.subscribe(
+      (chat) => {
+        this.selectedChat = chat;
+      }
+    );
+
     this.getContacts();
   }
 
@@ -51,6 +58,8 @@ export class MainPageComponent implements OnInit, OnDestroy {
     if (this.messageSubscription) this.messageSubscription.unsubscribe();
     if (this.contactsSubscription) this.contactsSubscription.unsubscribe();
     if (this.userSubScription) this.userSubScription.unsubscribe();
+    if (this.selectedChatSubScription)
+      this.selectedChatSubScription.unsubscribe();
   }
 
   sendMessage(messageText: string) {
@@ -84,7 +93,9 @@ export class MainPageComponent implements OnInit, OnDestroy {
       );
 
       await this.getOtherUser(newChat as unknown as Chat);
-      this.selectedChat = newChat as unknown as Chat;
+
+      // this.selectedChat = newChat as unknown as Chat;
+      this.chatService.setSelectChat(newChat as unknown as Chat);
       this.onShowModal('');
       return;
     }
@@ -94,7 +105,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
       typeof chatInChatsListIdx === 'number' &&
       this.chats
     ) {
-      this.selectedChat = this.chats[chatInChatsListIdx];
+      this.chatService.setSelectChat(this.chats[chatInChatsListIdx]);
       this.getOtherUser(this.selectedChat);
       this.onShowModal('');
     }
@@ -112,7 +123,7 @@ export class MainPageComponent implements OnInit, OnDestroy {
 
   onSelectChat(chat: Chat) {
     if (!this.chats?.length) return;
-    this.selectedChat = chat;
+    this.chatService.setSelectChat(chat);
     this.getOtherUser(this.selectedChat);
   }
 
