@@ -21,6 +21,7 @@ import { AuthService } from 'src/app/services/auth-service/auth.service';
 export class MessageComponent implements OnInit, OnDestroy {
   @Input() messages: Message[] | null = null;
   @Input() selectedChat: Chat | null = null;
+  @Input() modalNameToShow: string | undefined;
   @Input() otherUser: User | null = null; // the user you are chatting,depends on selectedChat
   @Output('selectModal') onSelectModal = new EventEmitter<string>();
   @Output('onSendMessage') onSendMsg = new EventEmitter<string>();
@@ -72,10 +73,5 @@ export class MessageComponent implements OnInit, OnDestroy {
   onSend() {
     this.onSendMsg.emit(this.textMsg);
     this.textMsg = '';
-
-    // setTimeout(() => {
-    //   const listEl = document.querySelector('.list-messages');
-    //   listEl?.scrollTo(0, listEl.scrollHeight);
-    // }, 30);
   }
 }

@@ -4,7 +4,7 @@
 
 .message {
   background-color: rgba(173, 216, 230, 0.37);
-  // width: 100%;
+  width: 100%;
   height: 100%;
   background-image: url("https://res.cloudinary.com/duajg3ah1/image/upload/v1675339080/wp62sd7rukhitfipzzyo.png");
   background-color: #efeae2be;
@@ -62,6 +62,10 @@
   .list {
     height: calc(100vh - 163px);
     overflow-y: auto;
+
+    &.height-with-emoji {
+      height: calc(100vh - 163px - 360px);
+    }
 
     .message-preview {
       padding-right: 63px;
@@ -128,6 +132,11 @@
 
   // Input-Message:
   .input-message {
+    &.height-with-emoji {
+      position: absolute;
+      bottom: 0;
+      width: 70%;
+    }
     background-color: #f0f2f5;
     .container {
       display: flex;

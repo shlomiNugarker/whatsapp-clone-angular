@@ -21,7 +21,7 @@
   </header>
 
   <!-- Messages List: -->
-  <div class="list list-messages">
+  <div class="list list-messages" [ngClass]="isEmojiShown? 'height-with-emoji': ''">
     <!-- Message Preview -->
     <div
       *ngFor="let message of messages"
@@ -41,16 +41,26 @@
       </div>
     </div>
   </div>
+
+  <emoji-mart 
+   *ngIf="isEmojiShown" 
+   (emojiClick)="addEmoji($event)" 
+   title="Pick your emoji…" emoji="point_up" 
+   [class]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': 'w-70'"  
+  >
+</emoji-mart>
   
-  <emoji-mart *ngIf="isEmojiShown" (emojiClick)="addEmoji($event)" title="Pick your emoji…" emoji="point_up" ></emoji-mart>
 
   <!-- Input Message: -->
-  <section class="input-message">
+  <section class="input-message"
+   [ngClass]="isEmojiShown? 'height-with-emoji': ''"  
+   [class]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': ''"  >
     <div class="container">
       <div class="icons">
 
         <span class="emojis" (click)="showEmoji()">
-          <app-emoji-logo />
+          <app-emoji-logo *ngIf="!isEmojiShown" />
+          <app-x-logo *ngIf="isEmojiShown"/>
         </span>
 
         <span class="attach"

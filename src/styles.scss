@@ -84,6 +84,18 @@ h6 {
 .emoji-mart {
   position: absolute;
   bottom: 50px;
+  // width: 70% !important;
+  height: 360px !important;
+}
+.w-40 {
+  .emoji-mart {
+    width: 40% !important;
+  }
+}
+.w-70 {
+  .emoji-mart {
+    width: 70% !important;
+  }
 }
 
 .emoji-mart,
@@ -303,6 +315,7 @@ h6 {
 .emoji-mart-preview {
   position: relative;
   height: 70px;
+  display: none !important;
 }
 
 .emoji-mart-preview-emoji,
@@ -311,6 +324,7 @@ h6 {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  display: none !important;
 }
 
 .emoji-mart-preview-emoji {
