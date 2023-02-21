@@ -31,7 +31,7 @@ const routes: Routes = [
     path: '',
     component: HomePageComponent,
     pathMatch: 'full',
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
   },
 ];
 

@@ -10,6 +10,9 @@
   width: 100%;
   background-color: white;
 
+  animation-name: slideRight;
+  animation-duration: 0.3s;
+
   //   Header:
   .header {
     width: 100%;
@@ -105,5 +108,13 @@
         }
       }
     }
+  }
+}
+@keyframes slideRight {
+  0% {
+    transform: translateX(-400px);
+  }
+  100% {
+    transform: translateX(0);
   }
 }

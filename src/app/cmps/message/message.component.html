@@ -46,15 +46,19 @@
    *ngIf="isEmojiShown" 
    (emojiClick)="addEmoji($event)" 
    title="Pick your emoji…" emoji="point_up" 
-   [class]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': 'w-70'"  
+   [ngClass]="modalNameToShow === 'search-message' || modalNameToShow === 'contact-info' ? 'w-40': ''" 
+    
+
   >
 </emoji-mart>
   
 
   <!-- Input Message: -->
   <section class="input-message"
-   [ngClass]="isEmojiShown? 'height-with-emoji': ''"  
-   [class]="modalNameToShow === 'search-message'  ||  modalNameToShow === 'contact-info' ? 'w-40': ''"  >
+   [ngClass]="isEmojiShown? '': ''"  
+   [ngClass]="modalNameToShow === 'search-message' || modalNameToShow === 'contact-info' ? 'w-40': ''" 
+    
+ >
     <div class="container">
       <div class="icons">
 

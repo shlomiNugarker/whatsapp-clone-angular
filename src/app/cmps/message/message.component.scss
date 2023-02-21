@@ -1,5 +1,7 @@
 :host {
   width: 70%;
+
+  transition: width 0.3s;
 }
 
 .message {
@@ -8,6 +10,9 @@
   height: 100%;
   background-image: url("https://res.cloudinary.com/duajg3ah1/image/upload/v1675339080/wp62sd7rukhitfipzzyo.png");
   background-color: #efeae2be;
+
+  animation-name: fadein;
+  animation-duration: 0.7s;
 
   // Header:
   .header {
@@ -132,12 +137,11 @@
 
   // Input-Message:
   .input-message {
-    &.height-with-emoji {
-      position: absolute;
-      bottom: 0;
-      width: 70%;
-    }
     background-color: #f0f2f5;
+    position: absolute;
+    bottom: 0;
+    // width: 100%t;
+    width: 70%;
     .container {
       display: flex;
       padding-right: 17px;
@@ -203,5 +207,14 @@
 @media screen and (max-width: 1050px) {
   :host {
     // min-width: 70%;
+  }
+}
+@keyframes fadein {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
   }
 }
